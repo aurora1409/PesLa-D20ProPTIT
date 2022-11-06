@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { setToken } from "./Store"; // import từ file store/index.js
 import { Login } from "./Axios";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import HomePage from "./Components/HomePage";
 
 function App() {
   // muốn gọi setState thì dùng useDispatch
@@ -57,12 +57,12 @@ function App() {
 
   return (
     <div className="App">
-      <button
+      {/* <button
         onClick={() => {
           toast("Wow so easy!");
         }}>
         Notify!
-      </button>
+      </button> */}
       {/* <ToastContainer
         position="bottom-center"
         autoClose={5000}
@@ -76,7 +76,7 @@ function App() {
         theme="colored"
       /> */}
       <ToastContainer />
-      <header className="App-header">
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -88,7 +88,8 @@ function App() {
           rel="noopener noreferrer">
           Learn React
         </a>
-      </header>
+      </header> */}
+      <HomePage />
     </div>
   );
 }
