@@ -2,11 +2,13 @@ import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { setToken } from "./Store"; // import từ file store/index.js
+
 import Axios, { Login } from "./Axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Register from "./Components/Registers/Register";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import HomePage from "./Components/HomePage";
 
 function App() {
   // muốn gọi setState thì dùng useDispatch
@@ -54,28 +56,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        {/* //demo Toast thông báo 
-      <button
-        onClick={() => {
-          toast("Wow so easy!");
-        }}
-      >
-        Notify!
-      </button> */}
-
-        {/* <ToastContainer
-        position="bottom-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      /> */}
-        {/* <ToastContainer /> */}
+        <HomePage />
         <Register />
         <Routes>
           <Route path="/register" component={Register} />
