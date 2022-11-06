@@ -1,0 +1,134 @@
+@import "../../Config.scss";
+
+.footer {
+  width: 100%;
+  margin-bottom: 2em;
+}
+
+.footer__banner {
+  overflow: hidden;
+}
+.footer__banner--img {
+  width: 100%;
+  background-size: cover;
+  transition: transform 4s;
+}
+.footer__banner--img:hover {
+  transform: scale(1.05);
+}
+
+.footer .footer__contain {
+  margin: 0 auto;
+  padding: 0rem 1rem;
+  color: rgb(128, 128, 128);
+  .about-us {
+    font-size: 1rem;
+    padding: 0 1.5rem;
+    text-align: left;
+    p {
+      font-size: 1rem;
+    }
+  }
+  .follow-us {
+    font-size: 1rem;
+    padding: 0 1.5rem;
+    text-align: left;
+
+    &--wrap {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0.75rem 0;
+    }
+  }
+}
+
+.footer__contain--wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.footer__contain--wrap > div {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.follow-us--wrap {
+  display: flex;
+}
+.follow-us--wrap i {
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  text-align: center;
+  font-size: 0.875rem;
+  border: 1px solid grey;
+  border-radius: 5px;
+  margin-right: 0.625rem;
+}
+.follow-us--wrap i:hover {
+  color: white;
+  box-shadow: inset 1.8rem 1.8rem 0 orange, inset -1.8rem -1.8rem 0 orange;
+  cursor: pointer;
+}
+
+/* Bottom__nav-mobile */
+@media (max-width: 739px) {
+  .bottom__nav--mobile {
+    display: block !important;
+    background-color: white;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    bottom: 0;
+  }
+  .bottom__nav__list--mobile {
+    width: 100%;
+    display: flex;
+    list-style: none;
+  }
+  .bottom__nav__item--mobile {
+    text-align: center;
+    padding: 0.6em 0em;
+  }
+  .bottom__nav__item--mobile a {
+    text-decoration: none;
+    color: black;
+  }
+  .footer .footer__contain .follow-us {
+    margin: 3.5rem 0;
+  }
+}
+
+@media (min-width: 740px) and (max-width: 1023px) {
+  .bottom__nav--mobile {
+    display: block !important;
+    background-color: white;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    bottom: 0;
+  }
+  .bottom__nav__list--mobile {
+    width: 100%;
+    display: flex;
+    list-style: none;
+  }
+  .bottom__nav__item--mobile {
+    text-align: center;
+    padding: 0.6em 0em;
+  }
+  .bottom__nav__item--mobile a {
+    text-decoration: none;
+    color: black;
+  }
+  .footer .footer__contain {
+    padding: 0rem;
+    margin-top: 1rem;
+    .about-us {
+      padding: 0;
+    }
+    .follow-us {
+      padding: 0;
+    }
+  }
+}

@@ -15,7 +15,7 @@ function App() {
   // muốn gọi state thì dùng useSelect
 
   // ví dụ mình gọi user ra log thử
-  const user = useSelector((state) => state.user);
+  const user = useSelector(state => state.user);
   const dispatch = useDispatch();
 
   // console.log(user.token); // đây là lấy token
@@ -55,13 +55,7 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter>
-        <HomePage />
-        <Register />
-        <Routes>
-          <Route path="/register" component={Register} />
-        </Routes>
-      </BrowserRouter>
+      <HomePage />
     </div>
   );
 }
