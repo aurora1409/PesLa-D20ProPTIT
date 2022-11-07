@@ -78,78 +78,86 @@ const Register = () => {
             <span className="registerTitle">Register</span>
             <button
               type="button"
-              className="btn-close"
+              className="btnClose"
               aria-label="Close"
             ></button>
           </div>
-          <div className="registerMain">
-            <input
-              type="text"
-              className="inputRegister"
-              id="firstName"
-              placeholder="FirstName"
-              onChange={e => {
-                setFirstName(e.target.value)
-                //console.log(firstName)
-              }}
-            />
-            <input
-              type="text"
-              className="inputRegister"
-              id="lastName"
-              placeholder="LastName"
-              //onChange={event => }
-            />
-            <input
-              type="email"
-              className="inputRegister"
-              id="email"
-              placeholder="Email"
-              onChange={e => {
-                setLastName(e.target.value)
-                //console.log(firstName)
-              }}
-            />
-            <input
-              type="text"
-              className="inputRegister"
-              id="username"
-              placeholder="UserName"
-              onChange={e => {
-                setUsername(e.target.value)
-                //console.log(firstName)
-              }}
-            />
-            <input
-              type="password"
-              className="inputRegister"
-              id="password"
-              placeholder="Password"
-              onChange={e => {
-                setPassword(e.target.value)
-                //console.log(firstName)
-              }}
-            />
-          </div>
-          <button className="registerBtn" id="registerBtnMain" onClick={handleClickRegister}>
-            Register
-          </button>
-          {/* (event) => {
-            axios(/re, {
-              firstname,
-              ///.
-            }) */}
-          <div className="otherMethodRegister">
-            <button className="registerBtn" id="registerGGBtn" >
-              Register with Google
+          <div className="wrap">
+            <div className="registerMain">
+              <input
+                type="text"
+                className="inputRegister"
+                id="firstName"
+                placeholder="FirstName"
+                onChange={e => {
+                  setFirstName(e.target.value)
+                  console.log(firstName)
+                }}
+              />
+              <input
+                type="text"
+                className="inputRegister"
+                id="lastName"
+                placeholder="LastName"
+                //onChange={event => }
+              />
+              <input
+                type="email"
+                className="inputRegister"
+                id="email"
+                placeholder="Email"
+                onChange={e => {
+                  setLastName(e.target.value)
+                  //console.log(firstName)
+                }}
+              />
+              <input
+                type="text"
+                className="inputRegister"
+                id="username"
+                placeholder="UserName"
+                onChange={e => {
+                  setUsername(e.target.value)
+                  //console.log(firstName)
+                }}
+              />
+              <input
+                type="password"
+                className="inputRegister"
+                id="password"
+                placeholder="Password"
+                onChange={e => {
+                  setPassword(e.target.value)
+                  //console.log(firstName)
+                }}
+              />
+            </div>
+            <button className="registerBtn" id="registerBtnMain" onClick={handleClickRegister}>
+              Register
             </button>
-            <button className="registerBtn" id="registerFbBtn">
-              Register with Facebook
-            </button>
-          </div>
-          <div className="registerFooter">
-            <Link to="/">Already have an account? Login</Link>
-            {/* <a href="">Already have an account? Login</a> */}
+            <div className="separateWrap">
+              <div className="sideSeparate"></div>
+              <div className="mainSeparate">OR</div>
+              <div className="sideSeparate"></div>
+            </div>
+            {/* (event) => {
+              axios(/re, {
+                firstname,
+                ///.
+              }) */}
+            <div className="otherMethodRegister">
+              <button className="registerBtn" id="registerGGBtn" >
+                Register with Google
+              </button>
+              <button className="registerBtn" id="registerFbBtn">
+                Register with Facebook
+              </button>
+            </div>
+            <div className="registerFooter">
+              <Link to="/" className="registerFooterLi"></Link>
+              Already have an account? Login
+              {/* <a href="">Already have an account? Login</a> */}
+            </div>
           </div>
         </div>
       </div>
