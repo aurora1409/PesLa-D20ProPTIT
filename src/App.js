@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import HomePage from "./Components/HomePage";
@@ -11,7 +12,7 @@ function App() {
   // muốn gọi state thì dùng useSelect
 
   // ví dụ mình gọi user ra log thử
-  const user = useSelector(state => state.user);
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   // console.log(user.token); // đây là lấy token
