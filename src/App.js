@@ -55,13 +55,11 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter>
-        <HomePage />
-        <Register />
-        <Routes>
-          <Route path="/register" component={Register} />
-        </Routes>
-      </BrowserRouter>
+      {/* <HomePage /> */}
+      <Register />
+      <Routes>
+        <Route path="/register" component={Register} />
+      </Routes>
     </div>
   );
 }
