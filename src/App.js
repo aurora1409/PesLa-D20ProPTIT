@@ -1,27 +1,23 @@
-import "./App.css";
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { setToken } from "./Store"; // import từ file store/index.js
-
-import Axios, { Login } from "./Axios";
-import { ToastContainer, toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { Route, Routes } from "react-router";
 import "react-toastify/dist/ReactToastify.css";
-import Register from "./Components/Registers/Register";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.css";
 import HomePage from "./Components/HomePage";
+import Register from "./Components/Registers/Register";
 
 function App() {
   // muốn gọi setState thì dùng useDispatch
   // muốn gọi state thì dùng useSelect
 
   // ví dụ mình gọi user ra log thử
-  const user = useSelector((state) => state.user);
+  const user = useSelector(state => state.user);
   const dispatch = useDispatch();
 
   // console.log(user.token); // đây là lấy token
   // console.log(user.name); // dây là lấy tên
   // console.log(user.product);
-  <Register />;
+
   useEffect(() => {
     // cái setToken này  setToken: (user, actions) => { }
     // nhưng mà chỉ cần truyền 1 tham số vào là đủ
@@ -52,13 +48,11 @@ function App() {
   });
 
   //console.log(localStorage.getItem("Petsla"));
-
   return (
     <div className="App">
-      {/* <HomePage /> */}
-      <Register />
       <Routes>
-        <Route path="/register" component={Register} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/account" element={<Register />} />
       </Routes>
     </div>
   );
