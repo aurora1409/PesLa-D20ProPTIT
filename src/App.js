@@ -48,11 +48,11 @@ function App() {
   });
 
   //console.log(localStorage.getItem("Petsla"));
-
   return (
     <div className="App">
       <Routes>
-        <Route path="/register" component={Register} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/account" element={<Register />} />
       </Routes>
     </div>
   );

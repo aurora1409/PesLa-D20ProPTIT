@@ -46,6 +46,7 @@ const NextArrow = props => {
 };
 
 const HomePage = () => {
+  console.log("YES1");
   const styleArrowWrap = {
     position: "absolute",
     top: 0,
