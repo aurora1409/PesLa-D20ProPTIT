@@ -18,6 +18,21 @@
     z-index: 100;
 }
 
+#loginWrap {
+    height: 556px;
+}
+
+.checkSaveLogin {
+    /* display: flex; */
+    text-align: left;
+    margin-left: 24px;
+    margin-bottom: 24px;
+}
+
+.check {
+    margin-right: 0.6rem;
+}
+
 .regisWrap {
     z-index: 100000;
     position: fixed;
@@ -126,6 +141,10 @@
    
 }
 
+#loginBtnMain {
+    background-color: rgb(245, 124, 43);
+}
+
 #registerGGBtn {
     background-color: rgb(245, 73, 43);
 }
@@ -137,6 +156,9 @@
 .registerFooter {
     color: rgb(178, 182, 184);
     margin-top: 0.6rem;
+    background-color: transparent;
+    border: none;
+    font-size: 0.9rem;
 }
 
 .registerFooter:hover {

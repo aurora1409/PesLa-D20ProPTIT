@@ -1,15 +1,17 @@
 import React, { useEffect } from "react";
-import "./Register.css";
-import index from "../../Axios/index";
-import Axios from "../../Axios/index";
+import "../Account.css";
+// import store from "../../../Store/index";
+import Axios from "../../../Axios/index";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { Form, Link } from "react-router-dom";
-import { addNewUser, setFirstName, setLastName, setEmail, setUsername, setPassword } from "../../Store/index";
+import { addNewUser, IsLogin, IsRegister, IsLoginState, IsRegisterState  } from "../../../Store/index";
 import { useState } from "react";
-import Headers from "../Header";
-import Footer from "../Footer";
+import Headers from "../../Header";
+import Footer from "../../Footer";
 import { ToastContainer, toast } from "react-toastify";
+import Account from "../Account";
+import Login from "../Logins/Login";
 
 // export default khong can dau ngoac {}, ten gi cung duoc
 // export bthg can dau {}
@@ -25,26 +27,33 @@ const Register = () => {
   // console.log(user);
   //const [firstname, setFirstname] = useState('');
   const handleClickRegister = () => {
-    Axios("register/", "POST", {
+    console.log("register")
+    Axios("/register/", "POST", {
+      username,
+      password,
       first_name: firstName,
       last_name: lastName,
       email,
-      username,
-      password
     })
       .then((res) => {
         console.log(res.data);
         // console.log("hi");
         dispatch(addNewUser(res.data));
-        localStorage.setItem("token", res.data.token.toString());
+        <Login/>
+        // dispatch()
+        // console.log(res.data)
+        // localStorage.setItem("token", res.data.token.toString());
         // console.log(localStorage.getItem("token"));
-        console.log(user);
+        // console.log(user);
       })
       .catch((err) => {
         console.log(err);
       });
   }
 
+  // dung setState de cho dang nhap va dang ki thay phien an hien, tuc la neu true 
+  // thi an false thi hien ..... dung if else trong setstate, truyen state vao duoi
+  // style display cua div hay button
   
 
   // const changeInput = data => {
@@ -92,6 +101,12 @@ const Register = () => {
                 type="button"
                 className="btnClose"
                 aria-label="Close"
+                 onClick={() => {
+                  <Account/>
+                  // return user.isLogin ? <Account /> : account 
+                  console.log(user.isLogin);
+                  // <Account />                
+                }}
               ></button>
             </div>
             <div className="wrap">
@@ -103,7 +118,7 @@ const Register = () => {
                   placeholder="FirstName"
                   onChange={e => {
                     setFirstName(e.target.value)
-                    console.log(firstName)
+                    // console.log(firstName)
                   }}
                 />
                 <input
@@ -111,7 +126,10 @@ const Register = () => {
                   className="inputRegister"
                   id="lastName"
                   placeholder="LastName"
-                  //onChange={event => }
+                  onChange={e => {
+                    setLastName(e.target.value)
+                    //console.log(firstName)
+                  }}
                 />
                 <input
                   type="email"
@@ -119,7 +137,7 @@ const Register = () => {
                   id="email"
                   placeholder="Email"
                   onChange={e => {
-                    setLastName(e.target.value)
+                    setEmail(e.target.value)
                     //console.log(firstName)
                   }}
                 />
@@ -165,9 +183,15 @@ const Register = () => {
                   Register with Facebook
                 </button>
               </div>
-              <div className="registerFooter">
-                <Link to="/" className="registerFooterLi"></Link>
-                Already have an account? Login
+              <div className="registerFooter"
+              //   onClick={() => {
+              //     <Login/>
+              //     console.log("login")
+              // }}
+              >
+                <Link to="/login">
+                  Already have an account? Login
+                </Link>
                 {/* <a href="">Already have an account? Login</a> */}
               </div>
             </div>

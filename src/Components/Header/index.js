@@ -2,8 +2,13 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import "../../grid.css";
 import "./index.scss";
+import { useDispatch, useSelector } from "react-redux";
 
 const Header = () => {
+   const user = useSelector((state) => state.user);
+   const dispatch = useDispatch();
+
+
   const handleClickMenuCart = () => {};
   return (
     <React.Fragment>
@@ -99,9 +104,16 @@ const Header = () => {
             </NavLink>
           </li>
           <li className="header__nav__item">
-            <NavLink to="/account" className="header__nav__item-link">
-              Account
-            </NavLink>
+            {" "}
+            {user.isLogin ? (
+              <NavLink to="/account" className="header__nav__item-link">
+                Account
+              </NavLink>
+            ) : (
+              <NavLink to="/login" className="header__nav__item-link">
+                Account
+              </NavLink>
+            )}
           </li>
         </ul>
       </div>

@@ -9,14 +9,10 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 import { type } from "@testing-library/user-event/dist/type";
 // khởi tạo state
 const initUser = {
-  // object
-  firstName: "",
-  lastName: "",
-  email: "",
-  username: "",
-  phoneNumber: "",
-  address: "",
-  password: "",
+  isLogin: false,
+  isRegister: false,
+  isRegisterState: false,
+  isLoginState: false,
   userRegister: [],
   product: [], // danh sách gian hàng của từng user -> cái này fetchAPI rồi lưu vào user.product // dũng lưu sản phẩm lúc click vào đây
 };
@@ -29,10 +25,23 @@ const userSlice = createSlice({
   initialState: initUser, // khởi tạo state
   reducers: {
     addNewUser: (user, actions) => {
-      console.log("hi");
-      console.log(actions);
+      // console.log("hi");
+      // console.log(actions);
       user.userRegister.push(actions.payload);
     },
+    IsLogin: (user, actions) => {
+      user.isLogin = actions.payload;
+    },
+    IsRegister: (user, actions) => {
+      user.isRegister = actions.payload;
+    },
+    IsLoginState: (user, actions) => {
+      console.log("login state")
+      user.isLoginState = actions.payload;
+    },
+    IsRegisterState: (user, actions) => {
+      user.isRegisterState = actions.payload;
+    }
 
     // reducers: 1 state và nhiều action
     // cái này mình sẽ viết các actions vào đây ví dụ như truyền token vào trong state user
@@ -51,36 +60,12 @@ const userSlice = createSlice({
             */
   },
 
-  setFirstName: (user, actions) => {
-    user.firstName = actions.payload;
-  },
-  setLastName: (user, actions) => {
-    user.lastName = actions.payload;
-  },
-  setEmail: (user, actions) => {
-    user.email = actions.payload;
-  },
-  setUsername: (user, actions) => {
-    user.username = actions.payload;
-  },
-  setPassword: (user, actions) => {
-    user.password = actions.payload;
-  },
-  setPhoneNumber: (user, actions) => {
-    user.phoneNumber = actions.payload;
-  },
+ 
 });
 
 // sau dó export ra
-export const {
-  addNewUser,
-  setFirstName,
-  setLastName,
-  setEmail,
-  setUsername,
-  setPassword,
-  setPhoneNumber,
-} = userSlice.actions; // đây là actions mình định nghĩa trên kia, muốn dùng cái nào thì import nó ra
+export const { addNewUser, IsLogin, IsRegister, IsLoginState, IsRegisterState } =
+  userSlice.actions; // đây là actions mình định nghĩa trên kia, muốn dùng cái nào thì import nó ra
 
 // đây là export store ( store gồm reducers, reducers sẽ lại gồm state và actions ) actions là hàm mà mình gửi vào
 const store = configureStore({
