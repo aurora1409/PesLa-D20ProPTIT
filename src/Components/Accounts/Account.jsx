@@ -1,13 +1,19 @@
 import React, { useEffect } from "react";
 import "./Account.css";
-import "../../grid.css"
+import "../../grid.css";
 //import store from "../../Store/index";
 import Axios from "../../Axios/index";
 import AxiosToken from "../../Axios/callAPIToken";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { Form, Link } from "react-router-dom";
-import { addNewUser, IsLogin, IsRegister, IsLoginState, IsRegisterState  } from "../../Store/index";
+import {
+  addNewUser,
+  IsLogin,
+  IsRegister,
+  IsLoginState,
+  IsRegisterState,
+} from "../../Store/index";
 import { useState } from "react";
 import Headers from "../Header";
 import Footer from "../Footer";
@@ -26,43 +32,125 @@ const Account = () => {
   // dispatch(IsLogin(true))
   // console.log(user.isLogin)
   // const getUser = () => {
-    var token = localStorage.getItem("token")
+  var token = localStorage.getItem("token");
   // console.log(token)
-    AxiosToken("/profile/", "GET", {token})
-      .then((res) => {
-        userLogin = res.data;
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  AxiosToken("/profile/", "GET", { token })
+    .then((res) => {
+      userLogin = res.data;
+      console.log(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   // }
 
-  var profile = 
-    <div className="grid wide wrap">
-          <div className="row">
-            <div className="col l-2">
-              <div className="dashboard">
-                <div className="dbTitle">DASHBOARD</div>
-                <div className="dbList">
-                  <ul className="dbWrap">
-                    <li className="dbItem">Profile</li>
-                    <li className="dbItem">Orders</li>
-                    <li className="dbItem">Wishlist</li>
-                  </ul>
+  var profile = (
+    <div className="wrap">
+      <div className="grid wide wrapMin">
+        <div className="row">
+          <div className="col l-2">
+            <div className="dashboard">
+              <div className="dbTitle">DASHBOARD</div>
+              <div className="dbWrap">
+                <div className="dbItem item1">
+                  <i class="fa-solid fa-envelope iconItem"></i>
+                  <span className="itemTile">Profile</span>
+                </div>
+                <div className="dbItem item2">
+                  <i class="fa-solid fa-envelope iconItem1"></i>
+                  <span className="itemTile">Orders</span>  
+                </div>
+                <div className="dbItem item3">
+                  <i class="fa-solid fa-envelope iconItem1"></i>
+                  <span className="itemTile">Wishlist</span> 
+                </div>             
+              </div>
+            </div>
+          </div>
+          <div className="col l-10 bigWrap">
+            <div className="proTitleWrap row">
+              <div className="proTitle col l-6">
+                <i class="fa-solid fa-envelope iconItem1"></i>
+                <span className="itemTileMain">My Profile</span>
+              </div>
+              <div className="col l-6 proEditBtn">
+                <button className="proEdit">Edit Profile</button>
+              </div>
+            </div>
+            <div className="proHeader row">
+              <div className="proAvatar col l-6">
+                <div className="wrapAvt">
+                  <div className="avatar"></div>
+                  <div className="nameUser">
+                    <div className="proName">Thanh Huyen</div>
+                    <div className="proUser">stella</div>
+                  </div>
+                </div>
+                <div className="typeUser">DIAMOND USER</div>
+              </div>
+              <div className="proInfo col l-6">
+                <div className="infoItem">
+                  <div className="infoItemNumber">10</div>
+                  <div className="infoItemName">Pending</div>
+                </div>
+                <div className="infoItem">
+                  <div className="infoItemNumber">10</div>
+                  <div className="infoItemName">Shipping</div>
+                </div>
+                <div className="infoItem">
+                  <div className="infoItemNumber">10</div>
+                  <div className="infoItemName">Delivered</div>
+                </div>
+                <div className="infoItem">
+                  <div className="infoItemNumber">10</div>
+                  <div className="infoItemName">Cancelled</div>
                 </div>
               </div>
             </div>
-            <div className="col l-10">
-              <div className="proTitle">My Profile</div>
-              <button className="proEdit">EditProfile</button>
-        </div>
-        <div className="content">
-          <h2>{userLogin }</h2>
-        </div>
+            <div className="proBody row">
+              <div className="col l-12">
+                <div className="proBodyInfo">
+                  <div className="proLabel">First Name</div>
+                  <input type="text" className="proBodyInfoItem" />
+                </div>
+                <div className="proBodyInfo">
+                  <div className="proLabel">Last Name</div>
+                  <input type="text" className="proBodyInfoItem" />
+                </div>
+                <div className="proBodyInfo">
+                  <div className="proLabel">Email</div>
+                  <input type="text" className="proBodyInfoItem" />
+                </div>
+                <div className="proBodyInfo">
+                  <div className="proLabel">Phone Number</div>
+                  <input type="text" className="proBodyInfoItem" />
+                </div>
+                <div className="proBodyGender">
+                  <div className="proLabelGender">Gender</div>
+                  <div className="genderWrap">
+                    <input name="gender" type="radio" id="radio1" className="proBodyGenderItem" />
+                    <label htmlFor="radio1">Male</label>
+                  </div>
+                  <div className="genderWrap">
+                    <input name="gender" type="radio" id="radio1" className="proBodyGenderItem" />
+                    <label htmlFor="radio1">Female</label>
+                  </div>
+                  <div className="genderWrap">
+                    <input name="gender" type="radio" id="radio1" className="proBodyGenderItem" />
+                    <label htmlFor="radio1">Other</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="content">
+            <h2>{userLogin}</h2>
           </div>
         </div>
-      
+      </div>
+    </div>
+  );
+
   const notify = () => {
     toast("You should login first!");
     <ToastContainer />;
@@ -77,7 +165,7 @@ const Account = () => {
         {profile}
         {/* {user.isLogin ? dispatch(IsLoginState(false)) && profile : dispatch(IsLoginState(true)) && <Login/>
         }  */}
-        <Footer/>
+        <Footer />
         {/* <Register /> */}
         {/* <Login/> */}
       </div>

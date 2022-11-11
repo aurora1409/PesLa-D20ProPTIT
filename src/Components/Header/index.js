@@ -104,7 +104,7 @@ const Header = () => {
             </NavLink>
           </li>
           <li className="header__nav__item">
-            {" "}
+            
             {user.isLogin ? (
               <NavLink to="/account" className="header__nav__item-link">
                 Account

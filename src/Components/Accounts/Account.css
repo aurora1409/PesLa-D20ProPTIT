@@ -182,3 +182,187 @@
 .mainSeparate {
     margin: 0 0.3rem;
 }
+
+
+
+/* CSS Account login completed */
+
+.wrap {
+    background-color: rgb(246,249,252);
+}
+
+.wrapMin {
+    padding-top: 30px;
+}
+
+.dashboard {
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.08),
+        0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: auto;
+    padding: 20px 50px 50px;
+    text-align: left;
+}
+
+.dbTitle {
+    color: rgb(126,126,126);
+    padding-bottom: 0.5rem;
+    
+}
+
+.dbWrap {
+    text-decoration: none;
+    color: rgb(75, 76, 77);
+}
+
+.dbItem {
+    padding: 0.2rem;
+    text-decoration: none;
+
+}
+
+.itemTile {
+    padding-left: 0.3rem;
+}
+
+.bigWrap {
+    width: 100%;
+    height: auto;
+}
+
+.proTitleWrap {
+
+}
+
+.proTitle {
+    text-align: left;
+    font-size: 1.7rem;
+}
+
+.itemTileMain {
+    font-weight: bold;
+    padding-left: 0.5rem;
+}
+
+.proEditBtn {
+    text-align: right;
+}
+
+.proEdit{
+    border: rgb(245, 124, 43) solid 1px;
+    border-radius: 4px;
+    background-color: rgb(246, 249, 252);
+    color: rgb(245, 124, 43);
+    text-align: right;
+    font-size: 1rem;
+    padding: 0.2rem 0.5rem;
+    width: 100px;
+    height: 2.5rem;
+}
+
+.proAvatar {
+    background-color: white;
+    width: 100%;
+    height: 100px;
+    padding: 1rem;
+    margin-top: 1.5rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.08),
+            0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+.wrapAvt {
+    display: flex;
+}
+
+.avatar {
+    border: rgb(245, 124, 43) solid 2px;
+    border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
+    background-image: url();
+    background-color: bisque;
+}
+
+.nameUser {
+    padding-top: 0.4rem;
+    padding-left: 0.5rem;
+    text-align: left;
+}
+
+.proUser {
+    font-size: 1rem;
+}
+
+.typeUser {
+    padding-top: 0.4rem;
+    padding-right: 0.5rem;
+}
+
+.proInfo {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    /* text-align: center; */
+}
+
+.infoItem {
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.08),
+            0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    width: 7.5rem;
+    margin-left: 0.5rem;
+    text-align: center;
+    padding: 1.2rem 0.5rem 0;
+    /* justify-content: center; */
+}
+
+.proBody {
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.08),
+            0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    height: auto;
+    padding: 2rem 0.5rem;
+
+}
+
+.proBodyInfo {
+    display: flex;
+    padding: 1rem 0;
+    justify-content: space-between;
+}
+
+.proLabel {
+    padding-right: 2rem;
+}
+
+.proBodyInfoItem {
+    width: 57rem;
+    height: 2rem;
+    background-color: rgb(246,249,252);
+    border-style: none;
+    border: rgb(173, 176, 180) 1px solid;
+}
+
+.proBodyGender {
+    display: flex;
+    padding: 1rem 0;
+    justify-content: start;
+}
+
+.proLabelGender {
+    padding-right: 5.5rem;
+}
+
+.genderWrap {
+    padding-right: 5rem;
+}
+
+#radio1 {
+    margin-right: 0.5rem;
+}
