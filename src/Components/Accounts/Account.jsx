@@ -28,6 +28,7 @@ const Account = () => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   var userLogin;
+  
   // console.log(typeof user.isLogin)
   // dispatch(IsLogin(true))
   // console.log(user.isLogin)
@@ -38,12 +39,12 @@ const Account = () => {
     AxiosToken("/profile/", "GET", token)
       .then((res) => {
         userLogin = res.data;
-        // console.log(res.data);
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
       }); 
-  })
+  },[token])
   // }
 
   var profile = (
@@ -162,6 +163,7 @@ const Account = () => {
       <div className="regis">
         {/* <div className="opacity" style={{display: "block"}}></div> */}
         <Headers />
+        {/* {console.log(user.userRegister[0].username)} */}
         {console.log(user.isLoginState)}
         {user.isLoginState ? profile : undefined}
         {/* {profile} */}

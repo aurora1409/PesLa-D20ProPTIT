@@ -344,6 +344,7 @@
 .proBodyInfoItem {
     width: 57rem;
     height: 2rem;
+    padding: 2px 4px;
     background-color: rgb(246,249,252);
     border-style: none;
     border: rgb(173, 176, 180) 1px solid;
