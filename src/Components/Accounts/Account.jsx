@@ -34,14 +34,16 @@ const Account = () => {
   // const getUser = () => {
   var token = localStorage.getItem("token");
   // console.log(token)
-  AxiosToken("/profile/", "GET", { token })
-    .then((res) => {
-      userLogin = res.data;
-      console.log(res.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  useEffect(() => {
+    AxiosToken("/profile/", "GET", token)
+      .then((res) => {
+        userLogin = res.data;
+        // console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      }); 
+  })
   // }
 
   var profile = (
@@ -53,15 +55,15 @@ const Account = () => {
               <div className="dbTitle">DASHBOARD</div>
               <div className="dbWrap">
                 <div className="dbItem item1">
-                  <i class="fa-solid fa-envelope iconItem"></i>
+                  <i className="fa-solid fa-envelope iconItem"></i>
                   <span className="itemTile">Profile</span>
                 </div>
                 <div className="dbItem item2">
-                  <i class="fa-solid fa-envelope iconItem1"></i>
+                  <i className="fa-solid fa-envelope iconItem1"></i>
                   <span className="itemTile">Orders</span>  
                 </div>
                 <div className="dbItem item3">
-                  <i class="fa-solid fa-envelope iconItem1"></i>
+                  <i className="fa-solid fa-envelope iconItem1"></i>
                   <span className="itemTile">Wishlist</span> 
                 </div>             
               </div>
@@ -70,7 +72,7 @@ const Account = () => {
           <div className="col l-10 bigWrap">
             <div className="proTitleWrap row">
               <div className="proTitle col l-6">
-                <i class="fa-solid fa-envelope iconItem1"></i>
+                <i className="fa-solid fa-envelope iconItem1"></i>
                 <span className="itemTileMain">My Profile</span>
               </div>
               <div className="col l-6 proEditBtn">
@@ -161,8 +163,8 @@ const Account = () => {
         {/* <div className="opacity" style={{display: "block"}}></div> */}
         <Headers />
         {console.log(user.isLoginState)}
-        {/* {user.isLoginState ? profile : undefined} */}
-        {profile}
+        {user.isLoginState ? profile : undefined}
+        {/* {profile} */}
         {/* {user.isLogin ? dispatch(IsLoginState(false)) && profile : dispatch(IsLoginState(true)) && <Login/>
         }  */}
         <Footer />

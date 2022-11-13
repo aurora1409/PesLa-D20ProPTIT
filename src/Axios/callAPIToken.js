@@ -7,8 +7,8 @@ function AxiosToken(endpoint, method = "GET", token) {
     method: method,
     url: baseURL + endpoint,
       // data: body,
-      headers: {
-        'Authorization': "Bearer" + token
+    headers: {
+        'Authorization': "Bearer " + token
     }
   });
 }

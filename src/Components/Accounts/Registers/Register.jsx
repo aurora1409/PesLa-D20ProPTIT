@@ -12,6 +12,7 @@ import Footer from "../../Footer";
 import { ToastContainer, toast } from "react-toastify";
 import Account from "../Account";
 import Login from "../Logins/Login";
+import { useNavigate } from "react-router-dom";
 
 // export default khong can dau ngoac {}, ten gi cung duoc
 // export bthg can dau {}
@@ -19,6 +20,7 @@ import Login from "../Logins/Login";
 const Register = () => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [firstName,setFirstName] = useState('')
   const[lastName,setLastName]= useState('')
   const[email,setEmail]= useState('')
@@ -39,7 +41,8 @@ const Register = () => {
         console.log(res.data);
         // console.log("hi");
         dispatch(addNewUser(res.data));
-        <Login/>
+        navigate("/login")
+        
         // dispatch()
         // console.log(res.data)
         // localStorage.setItem("token", res.data.token.toString());
@@ -101,8 +104,9 @@ const Register = () => {
                 type="button"
                 className="btnClose"
                 aria-label="Close"
-                 onClick={() => {
-                  <Account/>
+                onClick={() => {
+                   navigate("/account")
+                  // <Account/>
                   // return user.isLogin ? <Account /> : account 
                   console.log(user.isLogin);
                   // <Account />                
@@ -184,14 +188,15 @@ const Register = () => {
                 </button>
               </div>
               <div className="registerFooter"
-              //   onClick={() => {
-              //     <Login/>
-              //     console.log("login")
-              // }}
+                onClick={() => {
+                  navigate("/login")
+                  // <Login/>
+                  console.log("login")
+              }}
               >
-                <Link to="/login">
+                {/* <Link to="/login"> */}
                   Already have an account? Login
-                </Link>
+                {/* </Link> */}
                 {/* <a href="">Already have an account? Login</a> */}
               </div>
             </div>

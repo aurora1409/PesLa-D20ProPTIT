@@ -18,6 +18,8 @@ import Footer from "../../Footer";
 import { ToastContainer, toast } from "react-toastify";
 import Account from "../Account";
 import Register from "../Registers/Register";
+import { useNavigate } from "react-router-dom";
+
 
 // export default khong can dau ngoac {}, ten gi cung duoc
 // export bthg can dau {}
@@ -25,6 +27,7 @@ import Register from "../Registers/Register";
 const Login = () => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   // dispatch(IsLogin(true))
@@ -38,14 +41,15 @@ const Login = () => {
     })
     .then((res) => {
       dispatch(IsLoginState(true))
-      console.log(user.isLoginState)
+      // console.log(user.isLoginState)
       console.log(res.data);
+      if(res.data.token!=null) navigate("/account")
         // console.log("hi");
         // dispatch(addNewUser(res.data));
-      console.log( typeof res.data.token)
+      // console.log( typeof res.data.token)
       localStorage.setItem("token", res.data.token);
         // console.log(localStorage.getItem("token"));
-      console.log(user);
+      // console.log(user);
       // <>
       //   <Link to="/account"></Link>
       // </>
@@ -59,9 +63,10 @@ const Login = () => {
   var handleClickClose = () => {
     // dispatch(IsLogin(false))
     // dispatch(IsLoginState(false))
-    return <>
-      <Link to="/account"></Link>
-    </>
+    navigate("/account")
+    // return <>
+    //   <Link to="/account"></Link>
+    // </>
     // return useEffect(
       // () => {
         // <Account/>
@@ -96,9 +101,9 @@ const Login = () => {
               // type="button"
               className="btnClose"
               // aria-label="Close"
-              // onClick={handleClickClose}
+              onClick={handleClickClose}
             >
-              <NavLink to="/account" className="btnClose"></NavLink>
+              {/* <NavLink to="/account" className="btnClose"></NavLink> */}
             </button>
           </div>
           <div className="wrap">
@@ -132,8 +137,10 @@ const Login = () => {
               className="registerBtn"
               id="loginBtnMain"
               onClick={handleClickLogin}
-            > <Link to="/account">Login</Link>
-                
+            >
+              {/* <Link to="/account">Login</Link> */}
+              Login
+              {/* {navigate("/register")} */}
             </button>
             <div className="separateWrap">
               <div className="sideSeparate"></div>
@@ -155,15 +162,20 @@ const Login = () => {
             </div>
             <div
               className="registerFooter"
+              onClick={() => {
+                navigate("/register")
+              }}
               // onClick={() => {
 
               //   // <Headers/>
               //   <Register />;
               //   console.log("regis");
               // }}
-            > <Link to = "/register">
+            >
+              {/* <Link to="/register"> */}
+              {/* {navigate("/register")} */}
               Do not have an account? Register
-              </Link>
+              {/* </Link> */}
               {/* <a href="">Already have an account? Login</a> */}
             </div>
             <div className="registerFooter">
