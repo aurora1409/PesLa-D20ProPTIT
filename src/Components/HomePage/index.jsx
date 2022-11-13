@@ -69,9 +69,9 @@ const HomePage = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
-    appendDots: function (dots) {
-      return <ul className="homepage__slider__dots__ul">{dots}</ul>;
-    },
+    // appendDots: function (dots) {
+    //   return <ul className="homepage__slider__dots__ul">{dots}</ul>;
+    // },
     customPaging: function (i) {
       return (
         <button
