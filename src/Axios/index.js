@@ -34,7 +34,7 @@ import axios from "axios";
 //export default axiosInstance;
 
 function Axios(endpoint, method = "GET", body) {
-  let baseURL = "https://petsla-api.herokuapp.com/";
+  let baseURL = "https://petsla-api.herokuapp.com";
   //console.log(baseURL + endpoint);
   return axios({
     method: method,

@@ -5,7 +5,9 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import HomePage from "./Components/HomePage";
-import Register from "./Components/Registers/Register";
+import Account from "./Components/Accounts/Account";
+import Register from "./Components/Accounts/Registers/Register";
+import Login from "./Components/Accounts/Logins/Login";
 
 function App() {
   // muốn gọi setState thì dùng useDispatch
@@ -19,7 +21,7 @@ function App() {
   // console.log(user.name); // dây là lấy tên
   // console.log(user.product);
 
-  useEffect(() => {
+  // useEffect(() => {
     // cái setToken này  setToken: (user, actions) => { }
     // nhưng mà chỉ cần truyền 1 tham số vào là đủ
     // dispatch(setToken("Token: Đưc Anh"));
@@ -46,14 +48,16 @@ function App() {
     //   "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY3NTc3NDMxLCJpYXQiOjE2Njc0OTEwMzEsImp0aSI6IjIwOTMxOTI0ODFjNTQ0ZmRiNTQxOTU1ZDYxZDc5YTU4IiwidXNlcl9pZCI6MTB9.tSFk6YGEf0N-H7rSOh4DoRagCbCe6Jk5A2NwXrctL-s"
     // );
     // Tắt bỏ máy tính sau mở lại vẫn lưu
-  });
+  // });
 
   //console.log(localStorage.getItem("Petsla"));
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/account" element={<Register />} />
+        <Route path="/register" element={<Register/>}/>
+        <Route path="/account" element={<Account />} />
+        <Route path="/login" element={<Login />} />   
       </Routes>
     </div>
   );
