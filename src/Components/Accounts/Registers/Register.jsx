@@ -5,7 +5,13 @@ import Axios from "../../../Axios/index";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { Form, Link } from "react-router-dom";
-import { addNewUser, IsLogin, IsRegister, IsLoginState, IsRegisterState  } from "../../../Store/index";
+import {
+  addNewUser,
+  IsLogin,
+  IsRegister,
+  IsLoginState,
+  IsRegisterState,
+} from "../../../Store/User";
 import { useState } from "react";
 import Headers from "../../Header";
 import Footer from "../../Footer";
@@ -18,18 +24,18 @@ import { useNavigate } from "react-router-dom";
 // export bthg can dau {}
 
 const Register = () => {
-  const user = useSelector((state) => state.user);
+  const user = useSelector(state => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [firstName,setFirstName] = useState('')
-  const[lastName,setLastName]= useState('')
-  const[email,setEmail]= useState('')
-  const[username,setUsername]= useState('')
-  const[password,setPassword]= useState('')
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   // console.log(user);
   //const [firstname, setFirstname] = useState('');
   const handleClickRegister = () => {
-    console.log("register")
+    console.log("register");
     Axios("/register/", "POST", {
       username,
       password,
@@ -37,27 +43,26 @@ const Register = () => {
       last_name: lastName,
       email,
     })
-      .then((res) => {
+      .then(res => {
         console.log(res.data);
         // console.log("hi");
         dispatch(addNewUser(res.data));
-        navigate("/login")
-        
+        navigate("/login");
+
         // dispatch()
         // console.log(res.data)
         // localStorage.setItem("token", res.data.token.toString());
         // console.log(localStorage.getItem("token"));
         // console.log(user);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
-  }
+  };
 
-  // dung setState de cho dang nhap va dang ki thay phien an hien, tuc la neu true 
+  // dung setState de cho dang nhap va dang ki thay phien an hien, tuc la neu true
   // thi an false thi hien ..... dung if else trong setstate, truyen state vao duoi
   // style display cua div hay button
-  
 
   // const changeInput = data => {
   //   dispatch(setFirstName(data.target.value))
@@ -93,9 +98,9 @@ const Register = () => {
   return (
     <>
       <div className="regis">
-        <div className="opacity" style={{display: "block"}}></div>
-        <Headers/>
-        <Footer/>
+        <div className="opacity" style={{ display: "block" }}></div>
+        <Headers />
+        <Footer />
         <div className="regisWrap">
           <div className="registerWrap">
             <div className="regisHeader">
@@ -105,13 +110,12 @@ const Register = () => {
                 className="btnClose"
                 aria-label="Close"
                 onClick={() => {
-                   navigate("/account")
+                  navigate("/account");
                   // <Account/>
-                  // return user.isLogin ? <Account /> : account 
+                  // return user.isLogin ? <Account /> : account
                   console.log(user.isLogin);
-                  // <Account />                
-                }}
-              ></button>
+                  // <Account />
+                }}></button>
             </div>
             <div className="wrap">
               <div className="registerMain">
@@ -121,7 +125,7 @@ const Register = () => {
                   id="firstName"
                   placeholder="FirstName"
                   onChange={e => {
-                    setFirstName(e.target.value)
+                    setFirstName(e.target.value);
                     // console.log(firstName)
                   }}
                 />
@@ -131,7 +135,7 @@ const Register = () => {
                   id="lastName"
                   placeholder="LastName"
                   onChange={e => {
-                    setLastName(e.target.value)
+                    setLastName(e.target.value);
                     //console.log(firstName)
                   }}
                 />
@@ -141,7 +145,7 @@ const Register = () => {
                   id="email"
                   placeholder="Email"
                   onChange={e => {
-                    setEmail(e.target.value)
+                    setEmail(e.target.value);
                     //console.log(firstName)
                   }}
                 />
@@ -151,7 +155,7 @@ const Register = () => {
                   id="username"
                   placeholder="UserName"
                   onChange={e => {
-                    setUsername(e.target.value)
+                    setUsername(e.target.value);
                     //console.log(firstName)
                   }}
                 />
@@ -161,12 +165,15 @@ const Register = () => {
                   id="password"
                   placeholder="Password"
                   onChange={e => {
-                    setPassword(e.target.value)
+                    setPassword(e.target.value);
                     //console.log(firstName)
                   }}
                 />
               </div>
-              <button className="registerBtn" id="registerBtnMain" onClick={handleClickRegister}>
+              <button
+                className="registerBtn"
+                id="registerBtnMain"
+                onClick={handleClickRegister}>
                 Register
               </button>
               <div className="separateWrap">
@@ -180,22 +187,22 @@ const Register = () => {
                   ///.
                 }) */}
               <div className="otherMethodRegister">
-                <button className="registerBtn" id="registerGGBtn" >
+                <button className="registerBtn" id="registerGGBtn">
                   Register with Google
                 </button>
                 <button className="registerBtn" id="registerFbBtn">
                   Register with Facebook
                 </button>
               </div>
-              <div className="registerFooter"
+              <div
+                className="registerFooter"
                 onClick={() => {
-                  navigate("/login")
+                  navigate("/login");
                   // <Login/>
-                  console.log("login")
-              }}
-              >
+                  console.log("login");
+                }}>
                 {/* <Link to="/login"> */}
-                  Already have an account? Login
+                Already have an account? Login
                 {/* </Link> */}
                 {/* <a href="">Already have an account? Login</a> */}
               </div>
