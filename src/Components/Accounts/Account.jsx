@@ -25,10 +25,10 @@ import Login from "./Logins/Login";
 // export bthg can dau {}
 
 const Account = () => {
-  const user = useSelector((state) => state.user);
+  const user = useSelector(state => state.user);
   const dispatch = useDispatch();
   var userLogin;
-  
+
   // console.log(typeof user.isLogin)
   // dispatch(IsLogin(true))
   // console.log(user.isLogin)
@@ -37,14 +37,14 @@ const Account = () => {
   // console.log(token)
   useEffect(() => {
     AxiosToken("/profile/", "GET", token)
-      .then((res) => {
+      .then(res => {
         userLogin = res.data;
         console.log(res.data);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
-      }); 
-  },[token])
+      });
+  }, [token]);
   // }
 
   var profile = (
@@ -61,12 +61,12 @@ const Account = () => {
                 </div>
                 <div className="dbItem item2">
                   <i className="fa-solid fa-envelope iconItem1"></i>
-                  <span className="itemTile">Orders</span>  
+                  <span className="itemTile">Orders</span>
                 </div>
                 <div className="dbItem item3">
                   <i className="fa-solid fa-envelope iconItem1"></i>
-                  <span className="itemTile">Wishlist</span> 
-                </div>             
+                  <span className="itemTile">Wishlist</span>
+                </div>
               </div>
             </div>
           </div>
@@ -131,15 +131,30 @@ const Account = () => {
                 <div className="proBodyGender">
                   <div className="proLabelGender">Gender</div>
                   <div className="genderWrap">
-                    <input name="gender" type="radio" id="radio1" className="proBodyGenderItem" />
+                    <input
+                      name="gender"
+                      type="radio"
+                      id="radio1"
+                      className="proBodyGenderItem"
+                    />
                     <label htmlFor="radio1">Male</label>
                   </div>
                   <div className="genderWrap">
-                    <input name="gender" type="radio" id="radio1" className="proBodyGenderItem" />
+                    <input
+                      name="gender"
+                      type="radio"
+                      id="radio1"
+                      className="proBodyGenderItem"
+                    />
                     <label htmlFor="radio1">Female</label>
                   </div>
                   <div className="genderWrap">
-                    <input name="gender" type="radio" id="radio1" className="proBodyGenderItem" />
+                    <input
+                      name="gender"
+                      type="radio"
+                      id="radio1"
+                      className="proBodyGenderItem"
+                    />
                     <label htmlFor="radio1">Other</label>
                   </div>
                 </div>

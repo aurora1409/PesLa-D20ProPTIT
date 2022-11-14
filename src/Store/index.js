@@ -14,8 +14,6 @@ const userSlice = createSlice({
   initialState: initUser,
   reducers: {
     addNewUser: (user, actions) => {
-      // console.log("hi");
-      // console.log(actions);
       user.userRegister.push(actions.payload);
     },
     IsLogin: (user, actions) => {

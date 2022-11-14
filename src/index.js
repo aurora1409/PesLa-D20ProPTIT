@@ -8,8 +8,6 @@ import reportWebVitals from "./reportWebVitals";
 import store from "./Store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-
-// tạo xong redux
 root.render(
   <BrowserRouter>
     <Provider store={store}>

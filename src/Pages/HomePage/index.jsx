@@ -1,17 +1,18 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
-import Headers from "../Header";
+import Headers from "../../Components/Header";
 import "./index.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import Footer from "../Footer";
+import Footer from "../../Components/Footer";
 
 const PrevArrow = props => {
   const { className, style, onClick, styleArrowWrap } = props;
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
       <div
+        className="tmpArrow"
         style={{
           ...styleArrowWrap,
           left: "6.5rem",
@@ -31,8 +32,9 @@ const NextArrow = props => {
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
       <div
+        className="tmpArrow"
         style={{
-          ...styleArrowWrap,
+          // ...styleArrowWrap,
           right: "6.5rem",
         }}
         onClick={onClick}>
@@ -46,20 +48,6 @@ const NextArrow = props => {
 };
 
 const HomePage = () => {
-  console.log("YES1");
-  const styleArrowWrap = {
-    position: "absolute",
-    top: 0,
-    bottom: 0,
-    marginTop: "auto",
-    marginBottom: "auto",
-    display: "flex",
-    alignItems: "center",
-    borderRadius: 0,
-    transform: "scale(1.75)",
-    zIndex: 1,
-  };
-
   const settings = {
     dots: true,
     dotsClass: "homepage__slider__dots",
@@ -69,9 +57,7 @@ const HomePage = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
-    // appendDots: function (dots) {
-    //   return <ul className="homepage__slider__dots__ul">{dots}</ul>;
-    // },
+
     customPaging: function (i) {
       return (
         <button
@@ -86,8 +72,8 @@ const HomePage = () => {
         />
       );
     },
-    prevArrow: <PrevArrow styleArrowWrap={styleArrowWrap} />,
-    nextArrow: <NextArrow styleArrowWrap={styleArrowWrap} />,
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
   };
 
   return (
