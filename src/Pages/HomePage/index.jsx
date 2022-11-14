@@ -1,18 +1,18 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
-import Headers from "../../Components/Header";
 import "./index.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+
+import Headers from "../../Components/Header";
 import Footer from "../../Components/Footer";
 
 const PrevArrow = props => {
-  const { className, style, onClick, styleArrowWrap } = props;
+  const { onClick, styleArrowWrap } = props;
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
       <div
-        className="tmpArrow"
         style={{
           ...styleArrowWrap,
           left: "6.5rem",
@@ -28,13 +28,12 @@ const PrevArrow = props => {
 };
 
 const NextArrow = props => {
-  const { className, style, onClick, styleArrowWrap } = props;
+  const { onClick, styleArrowWrap } = props;
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
       <div
-        className="tmpArrow"
         style={{
-          // ...styleArrowWrap,
+          ...styleArrowWrap,
           right: "6.5rem",
         }}
         onClick={onClick}>
@@ -48,6 +47,19 @@ const NextArrow = props => {
 };
 
 const HomePage = () => {
+  const styleArrowWrap = {
+    position: "absolute",
+    top: 0,
+    bottom: 0,
+    marginTop: "auto",
+    marginBottom: "auto",
+    display: "flex",
+    alignItems: "center",
+    borderRadius: 0,
+    transform: "scale(1.75)",
+    zIndex: 1,
+  };
+
   const settings = {
     dots: true,
     dotsClass: "homepage__slider__dots",
@@ -72,8 +84,8 @@ const HomePage = () => {
         />
       );
     },
-    prevArrow: <PrevArrow />,
-    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow styleArrowWrap={styleArrowWrap} />,
+    nextArrow: <NextArrow styleArrowWrap={styleArrowWrap} />,
   };
 
   return (
