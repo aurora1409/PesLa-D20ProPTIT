@@ -11,7 +11,7 @@ import {
   IsRegister,
   IsLoginState,
   IsRegisterState,
-} from "../../../Store/index";
+} from "../../..//Store/User";
 import { useState } from "react";
 import Headers from "../../Header";
 import Footer from "../../Footer";
@@ -20,12 +20,11 @@ import Account from "../Account";
 import Register from "../Registers/Register";
 import { useNavigate } from "react-router-dom";
 
-
 // export default khong can dau ngoac {}, ten gi cung duoc
 // export bthg can dau {}
 
 const Login = () => {
-  const user = useSelector((state) => state.user);
+  const user = useSelector(state => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
@@ -34,27 +33,27 @@ const Login = () => {
   // console.log(user);
   //const [firstname, setFirstname] = useState('');
   const handleClickLogin = () => {
-    console.log("login")
+    console.log("login");
     Axios("/login/", "POST", {
       username,
       password,
     })
-    .then((res) => {
-      dispatch(IsLoginState(true))
-      // console.log(user.isLoginState)
-      console.log(res.data);
-      if(res.data.token!=null) navigate("/account")
+      .then(res => {
+        dispatch(IsLoginState(true));
+        // console.log(user.isLoginState)
+        console.log(res.data);
+        if (res.data.token != null) navigate("/account");
         // console.log("hi");
         // dispatch(addNewUser(res.data));
-      // console.log( typeof res.data.token)
-      localStorage.setItem("token", res.data.token);
+        // console.log( typeof res.data.token)
+        localStorage.setItem("token", res.data.token);
         // console.log(localStorage.getItem("token"));
-      // console.log(user);
-      // <>
-      //   <Link to="/account"></Link>
-      // </>
+        // console.log(user);
+        // <>
+        //   <Link to="/account"></Link>
+        // </>
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   };
@@ -63,21 +62,21 @@ const Login = () => {
   var handleClickClose = () => {
     // dispatch(IsLogin(false))
     // dispatch(IsLoginState(false))
-    navigate("/account")
+    navigate("/account");
     // return <>
     //   <Link to="/account"></Link>
     // </>
     // return useEffect(
-      // () => {
-        // <Account/>
+    // () => {
+    // <Account/>
     // console.log(user.isLoginState);
-        // dispatch(IsLoginState(false));
-        // dispatch(IsRegisterState(true))
-        // console.log(user.isLoginState);
-        // return account
-        // return user.isLogin ? <Account /> : account
-        // <Account />
-      // }, [])
+    // dispatch(IsLoginState(false));
+    // dispatch(IsRegisterState(true))
+    // console.log(user.isLoginState);
+    // return account
+    // return user.isLogin ? <Account /> : account
+    // <Account />
+    // }, [])
   };
   // useEffect (handleClickClose, [user.isLoginState])
 
@@ -91,8 +90,8 @@ const Login = () => {
   var account2 = (
     <div className="regis">
       <div className="opacity" style={{ display: "block" }}></div>
-      <Headers/>
-        <Footer/>
+      <Headers />
+      <Footer />
       <div className="regisWrap">
         <div className="registerWrap" id="loginWrap">
           <div className="regisHeader">
@@ -101,8 +100,7 @@ const Login = () => {
               // type="button"
               className="btnClose"
               // aria-label="Close"
-              onClick={handleClickClose}
-            >
+              onClick={handleClickClose}>
               {/* <NavLink to="/account" className="btnClose"></NavLink> */}
             </button>
           </div>
@@ -113,7 +111,7 @@ const Login = () => {
                 className="inputRegister"
                 id="username"
                 placeholder="UserName"
-                onChange={(e) => {
+                onChange={e => {
                   setUsername(e.target.value);
                   //console.log(firstName)
                 }}
@@ -123,7 +121,7 @@ const Login = () => {
                 className="inputRegister"
                 id="password"
                 placeholder="Password"
-                onChange={(e) => {
+                onChange={e => {
                   setPassword(e.target.value);
                   //console.log(firstName)
                 }}
@@ -136,8 +134,7 @@ const Login = () => {
             <button
               className="registerBtn"
               id="loginBtnMain"
-              onClick={handleClickLogin}
-            >
+              onClick={handleClickLogin}>
               {/* <Link to="/account">Login</Link> */}
               Login
               {/* {navigate("/register")} */}
@@ -163,7 +160,7 @@ const Login = () => {
             <div
               className="registerFooter"
               onClick={() => {
-                navigate("/register")
+                navigate("/register");
               }}
               // onClick={() => {
 
@@ -192,10 +189,12 @@ const Login = () => {
     toast("You should login first!");
     <ToastContainer />;
   };
-  return <>
-    {account2}
-    {/* {user.isLoginState ? account2 : account} */}
-  </>;
+  return (
+    <>
+      {account2}
+      {/* {user.isLoginState ? account2 : account} */}
+    </>
+  );
 };
 
 export default Login;

@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "../../grid.css";
 import "./index.scss";
 import { useDispatch, useSelector } from "react-redux";
+import { addProduct } from "../../Store/ProductAdded";
 
 const Header = () => {
-   const user = useSelector((state) => state.user);
-   const dispatch = useDispatch();
-
+  const user = useSelector(state => state.user);
+  const productadded = useSelector(state => state.productadded);
+  const dispatch = useDispatch();
+  console.log(productadded);
 
   const handleClickMenuCart = () => {};
   return (
@@ -104,7 +106,6 @@ const Header = () => {
             </NavLink>
           </li>
           <li className="header__nav__item">
-            
             {user.isLogin ? (
               <NavLink to="/account" className="header__nav__item-link">
                 Account

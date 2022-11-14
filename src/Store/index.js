@@ -1,49 +1,20 @@
-import { configureStore, createSlice } from "@reduxjs/toolkit";
-
-const initUser = {
-  isLogin: false,
-  isRegister: false,
-  isRegisterState: false,
-  isLoginState: false,
-  userRegister: [],
-  product: [],
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import user from "./User";
+import productadded from "./ProductAdded";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+const persistConfig = {
+  key: "root",
+  storage: storage,
+  whitelist: ["productadded"],
 };
-
-const userSlice = createSlice({
-  name: "Users",
-  initialState: initUser,
-  reducers: {
-    addNewUser: (user, actions) => {
-      user.userRegister.push(actions.payload);
-    },
-    IsLogin: (user, actions) => {
-      user.isLogin = actions.payload;
-    },
-    IsRegister: (user, actions) => {
-      user.isRegister = actions.payload;
-    },
-    IsLoginState: (user, actions) => {
-      console.log("login state");
-      user.isLoginState = actions.payload;
-    },
-    IsRegisterState: (user, actions) => {
-      user.isRegisterState = actions.payload;
-    },
-  },
+const rootReducers = combineReducers({
+  user,
+  productadded,
 });
-
-export const {
-  addNewUser,
-  IsLogin,
-  IsRegister,
-  IsLoginState,
-  IsRegisterState,
-} = userSlice.actions;
-
+const persistedReducer = persistReducer(persistConfig, rootReducers);
 const store = configureStore({
-  reducer: {
-    user: userSlice.reducer,
-  },
+  reducer: persistedReducer,
 });
-
-export default store;
+const persistor = persistStore(store);
+export { store, persistor };
