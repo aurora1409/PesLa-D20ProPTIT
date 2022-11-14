@@ -1,8 +1,8 @@
 const getIdURL = () => {
-  const URL = window.location.href;
+  const URL = window.location.href.toString();
   let id = "";
-  for (let i = URL.length; i >= 0; i--) {
-    if (URL[i] >= 0 && URL[i] <= 9) {
+  for (let i = URL.length - 1; i >= 0; i--) {
+    if (URL[i] >= "0" && URL[i] <= "9") {
       id = URL[i] + id;
     } else {
       break;
