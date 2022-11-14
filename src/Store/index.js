@@ -27,7 +27,12 @@ const userSlice = createSlice({
     addNewUser: (user, actions) => {
       // console.log("hi");
       // console.log(actions);
-      user.userRegister.push(actions.payload);
+      let userFirst = user.userRegister.find(
+        (e) => JSON.stringify(e) === JSON.stringify(actions.payload)
+      );
+      console.log(userFirst)
+      if(userFirst === undefined)
+        user.userRegister.push(actions.payload);
     },
     IsLogin: (user, actions) => {
       user.isLogin = actions.payload;
@@ -36,7 +41,7 @@ const userSlice = createSlice({
       user.isRegister = actions.payload;
     },
     IsLoginState: (user, actions) => {
-      console.log("login state")
+      // console.log("login state")
       user.isLoginState = actions.payload;
     },
     IsRegisterState: (user, actions) => {

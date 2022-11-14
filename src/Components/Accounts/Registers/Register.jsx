@@ -38,9 +38,9 @@ const Register = () => {
       email,
     })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         // console.log("hi");
-        dispatch(addNewUser(res.data));
+        // dispatch(addNewUser(res.data));
         navigate("/login")
         
         // dispatch()
@@ -119,6 +119,7 @@ const Register = () => {
                   type="text"
                   className="inputRegister"
                   id="firstName"
+                  required
                   placeholder="FirstName"
                   onChange={e => {
                     setFirstName(e.target.value)
@@ -129,6 +130,7 @@ const Register = () => {
                   type="text"
                   className="inputRegister"
                   id="lastName"
+                  required
                   placeholder="LastName"
                   onChange={e => {
                     setLastName(e.target.value)
@@ -139,6 +141,7 @@ const Register = () => {
                   type="email"
                   className="inputRegister"
                   id="email"
+                  required
                   placeholder="Email"
                   onChange={e => {
                     setEmail(e.target.value)
@@ -149,6 +152,7 @@ const Register = () => {
                   type="text"
                   className="inputRegister"
                   id="username"
+                  required
                   placeholder="UserName"
                   onChange={e => {
                     setUsername(e.target.value)
@@ -159,6 +163,7 @@ const Register = () => {
                   type="password"
                   className="inputRegister"
                   id="password"
+                  required
                   placeholder="Password"
                   onChange={e => {
                     setPassword(e.target.value)

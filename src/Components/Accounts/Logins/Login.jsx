@@ -4,6 +4,7 @@ import "../Account.css";
 import Axios from "../../../Axios/index";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import AxiosToken from "../../../Axios/callAPIToken";
 import { Form, Link, NavLink } from "react-router-dom";
 import {
   addNewUser,
@@ -41,13 +42,27 @@ const Login = () => {
     })
     .then((res) => {
       dispatch(IsLoginState(true))
+      localStorage.setItem("token", res.data.token); 
+
+      AxiosToken("/profile/", "GET", res.data.token)
+      .then((res) => {
+        // userLogin = res.data;
+        // console.log(2);
+        console.log(res.data);
+        dispatch(addNewUser(res.data));
+        navigate("/account")
+
+      })
+      .catch((err) => {
+        console.log(err);
+      }); 
       // console.log(user.isLoginState)
-      console.log(res.data);
-      if(res.data.token!=null) navigate("/account")
+      // console.log(res.data);
+      // if(res.data.token!=null) navigate("/account")
         // console.log("hi");
         // dispatch(addNewUser(res.data));
       // console.log( typeof res.data.token)
-      localStorage.setItem("token", res.data.token);
+      
         // console.log(localStorage.getItem("token"));
       // console.log(user);
       // <>
@@ -112,6 +127,7 @@ const Login = () => {
                 type="text"
                 className="inputRegister"
                 id="username"
+                required
                 placeholder="UserName"
                 onChange={(e) => {
                   setUsername(e.target.value);
@@ -122,6 +138,7 @@ const Login = () => {
                 type="password"
                 className="inputRegister"
                 id="password"
+                required
                 placeholder="Password"
                 onChange={(e) => {
                   setPassword(e.target.value);

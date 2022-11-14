@@ -5,9 +5,8 @@ import "./index.scss";
 import { useDispatch, useSelector } from "react-redux";
 
 const Header = () => {
-   const user = useSelector((state) => state.user);
-   const dispatch = useDispatch();
-
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   const handleClickMenuCart = () => {};
   return (
@@ -104,8 +103,7 @@ const Header = () => {
             </NavLink>
           </li>
           <li className="header__nav__item">
-            
-            {user.isLogin ? (
+            {user.isLoginState ? (
               <NavLink to="/account" className="header__nav__item-link">
                 Account
               </NavLink>
