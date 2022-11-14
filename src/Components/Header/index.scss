@@ -48,7 +48,6 @@
 
 .header {
   width: 100%;
-  position: -webkit-sticky;
   position: sticky;
   z-index: 1;
   top: 0;
@@ -99,10 +98,13 @@
     }
   }
   &__cart {
+    &:hover {
+      cursor: pointer;
+      color: orange;
+    }
     display: flex;
     text-align: center;
     align-items: center;
-    cursor: pointer;
     position: relative;
     &__icon {
       font-size: 1.5em;

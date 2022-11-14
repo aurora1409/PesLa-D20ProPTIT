@@ -1,19 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import "../../grid.css";
+import MenuCart from "../Cart";
 import "./index.scss";
-import { useDispatch, useSelector } from "react-redux";
-import { addProduct } from "../../Store/ProductAdded";
 
 const Header = () => {
   const user = useSelector(state => state.user);
-  const productadded = useSelector(state => state.productadded);
-  const dispatch = useDispatch();
-  console.log(productadded);
-
-  const handleClickMenuCart = () => {};
+  const productList = useSelector(state => state.productadded).productList;
+  const [hideCart, setHideCart] = useState(true);
+  const handleClickMenuCart = () => {
+    setHideCart(false);
+  };
   return (
     <React.Fragment>
+      <MenuCart hideCart={hideCart} setHideCart={setHideCart} />
       <div className="header__higher--wrap">
         <div className="grid wide">
           <div className="header__higher">
@@ -78,7 +79,7 @@ const Header = () => {
             </div>
             <div className="header__cart" onClick={handleClickMenuCart}>
               <i className="header__cart__icon fa-solid fa-cart-shopping"></i>
-              <div className="header__cart__count"> {3} </div>
+              <div className="header__cart__count">{productList.length}</div>
             </div>
           </div>
         </div>

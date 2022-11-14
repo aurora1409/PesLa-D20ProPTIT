@@ -4,11 +4,13 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getProductList } from "../../../../Axios/Product";
 import { baseURL, OptionSortProduct } from "../../../../Config";
-import { scrollTop } from "../../../../Utils";
+import { getIdItem, scrollTop } from "../../../../Utils";
 import "./sortProductList.scss";
 import "./renderProductList.scss";
 import "./pageProductList.css";
 import "../../../../grid.css";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../../../../Store/ProductAdded";
 
 export default function ProductList() {
   const notify = () =>
@@ -22,6 +24,7 @@ export default function ProductList() {
       progress: undefined,
     });
 
+  const dispatch = useDispatch();
   const [productList, setProductList] = useState([]);
   const [itemPerPage, setItemPerPage] = useState(12);
   const [currentPage, setCurrentPage] = useState(1);
@@ -41,6 +44,9 @@ export default function ProductList() {
 
   const handleAddItem = e => {
     notify();
+    const id = getIdItem(e);
+    const item = productList.find(value => value.id === id * 1);
+    dispatch(addProduct(item));
   };
 
   const handleChangeSort = e => {
