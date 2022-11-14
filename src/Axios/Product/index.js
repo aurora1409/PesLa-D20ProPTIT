@@ -17,4 +17,8 @@ const getProductList = () => {
   return getAPI("/products/");
 };
 
-export { getProductList };
+const getProductItem = id => {
+  return getAPI("/product/" + id);
+};
+
+export { getProductList, getProductItem };
