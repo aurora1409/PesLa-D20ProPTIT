@@ -32,10 +32,10 @@ const listRoute = [
     path: "account",
     component: <Account />,
   },
-  // {
-  //   path: "login",
-  //   component: <Login />,
-  // },
+  {
+    path: "login",
+    component: <Login />,
+  },
   {
     path: "product-:id",
     component: <Item />,
