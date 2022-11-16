@@ -107,7 +107,7 @@ const Header = () => {
             </NavLink>
           </li>
           <li className="header__nav__item">
-            {user.isLogin ? (
+            {user.isLoginState ? (
               <NavLink to="/account" className="header__nav__item-link">
                 Account
               </NavLink>

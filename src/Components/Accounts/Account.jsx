@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import "./Account.css";
 import "../../grid.css";
 //import store from "../../Store/index";
@@ -27,24 +27,28 @@ import Login from "./Logins/Login";
 const Account = () => {
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
-  var userLogin;
-
+  // var userLogin;
   // console.log(typeof user.isLogin)
   // dispatch(IsLogin(true))
   // console.log(user.isLogin)
   // const getUser = () => {
-  var token = localStorage.getItem("token");
+  // var token = localStorage.getItem("token");
+  // console.log(1);
   // console.log(token)
-  useEffect(() => {
-    AxiosToken("/profile/", "GET", token)
-      .then(res => {
-        userLogin = res.data;
-        console.log(res.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, [token]);
+  // useLayoutEffect(() => {
+  //   AxiosToken("/profile/", "GET", token)
+  //     .then((res) => {
+  //       // userLogin = res.data;
+  //       console.log(2);
+  //       console.log(res.data);
+  //       dispatch(addNewUser(res.data));
+
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // // }, [])
+  // console.log(user.userRegister)
   // }
 
   var profile = (
@@ -85,8 +89,17 @@ const Account = () => {
                 <div className="wrapAvt">
                   <div className="avatar"></div>
                   <div className="nameUser">
-                    <div className="proName">Thanh Huyen</div>
-                    <div className="proUser">stella</div>
+                    <div className="proName">
+                      {user.userRegister[user.userRegister.length - 1]
+                        .first_name +
+                        " " +
+                        user.userRegister[user.userRegister.length - 1]
+                          .last_name}
+                    </div>
+                    <div className="proUser">
+                      {/* {console.log(user.userRegister.length - 1)} */}
+                      {user.userRegister[user.userRegister.length - 1].username}
+                    </div>
                   </div>
                 </div>
                 <div className="typeUser">DIAMOND USER</div>
@@ -114,19 +127,46 @@ const Account = () => {
               <div className="col l-12">
                 <div className="proBodyInfo">
                   <div className="proLabel">First Name</div>
-                  <input type="text" className="proBodyInfoItem" />
+                  <input
+                    type="text"
+                    className="proBodyInfoItem"
+                    value={
+                      user.userRegister[user.userRegister.length - 1].first_name
+                    }
+                    // defaultValue or read-only: chi xem
+                    // value them onChange de sua
+                    onChange={() => {}}
+                  />
                 </div>
                 <div className="proBodyInfo">
                   <div className="proLabel">Last Name</div>
-                  <input type="text" className="proBodyInfoItem" />
+                  <input
+                    type="text"
+                    className="proBodyInfoItem"
+                    value={
+                      user.userRegister[user.userRegister.length - 1].last_name
+                    }
+                    onChange={() => {}}
+                  />
                 </div>
                 <div className="proBodyInfo">
                   <div className="proLabel">Email</div>
-                  <input type="text" className="proBodyInfoItem" />
+                  <input
+                    type="text"
+                    className="proBodyInfoItem"
+                    value={
+                      user.userRegister[user.userRegister.length - 1].email
+                    }
+                    onChange={() => {}}
+                  />
                 </div>
                 <div className="proBodyInfo">
                   <div className="proLabel">Phone Number</div>
-                  <input type="text" className="proBodyInfoItem" />
+                  <input
+                    type="text"
+                    className="proBodyInfoItem"
+                    // value={user.userRegister[user.userRegister.length - 1].phone_number}
+                  />
                 </div>
                 <div className="proBodyGender">
                   <div className="proLabelGender">Gender</div>
@@ -162,7 +202,8 @@ const Account = () => {
             </div>
           </div>
           <div className="content">
-            <h2>{userLogin}</h2>
+            {/* {console.log(3)} */}
+            {/* <h2>{}</h2> */}
           </div>
         </div>
       </div>
@@ -173,17 +214,18 @@ const Account = () => {
     toast("You should login first!");
     <ToastContainer />;
   };
+  if (!user.isLoginState) return <></>;
   return (
     <>
       <div className="regis">
-        {/* <div className="opacity" style={{display: "block"}}></div> */}
         <Headers />
         {/* {console.log(user.userRegister[0].username)} */}
-        {console.log(user.isLoginState)}
-        {user.isLoginState ? profile : undefined}
-        {/* {profile} */}
+        {/* {console.log(user.isLoginState)} */}
+        {/* {user.isLoginState ? profile : undefined} */}
+        {/* {console.log(4)} */}
+        {profile}
         {/* {user.isLogin ? dispatch(IsLoginState(false)) && profile : dispatch(IsLoginState(true)) && <Login/>
-        }  */}
+          }  */}
         <Footer />
         {/* <Register /> */}
         {/* <Login/> */}
