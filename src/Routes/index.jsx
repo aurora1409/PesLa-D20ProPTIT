@@ -1,6 +1,6 @@
-import Account from "../Components/Accounts/Account";
-import Login from "../Components/Accounts/Logins/Login";
-import Register from "../Components/Accounts/Registers/Register";
+import Account from "../Pages/Accounts/Account";
+import Login from "../Components/Logins/Login";
+import Register from "../Components/Registers/Register";
 import Cart from "../Pages/Cart";
 import Contact from "../Pages/Contact";
 import HomePage from "../Pages/HomePage";
@@ -30,7 +30,7 @@ const listRoute = [
   },
   {
     path: "account",
-    component: <Account />,
+    component: <Account/>,
   },
   {
     path: "login",

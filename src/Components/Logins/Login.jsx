@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import "../Account.css";
+import "../../Pages/Accounts/Account.css";
 // import store from "../../../Store/index";
-import Axios from "../../../Axios/index";
+import Axios from "../../Axios/index";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import AxiosToken from "../../../Axios/callAPIToken";
+import AxiosToken from "../../Axios/callAPIToken";
 import { Form, Link, NavLink } from "react-router-dom";
 import {
   addNewUser,
@@ -13,12 +13,12 @@ import {
   IsLoginState,
   IsRegisterState,
   checkUser,
-} from "../../../Store/User/index";
+} from "../../Store/User/index";
 import { useState } from "react";
-import Headers from "../../Header";
-import Footer from "../../Footer";
+import Headers from "../Header";
+import Footer from "../Footer";
 import { ToastContainer, toast } from "react-toastify";
-import Account from "../Account";
+import Account from "../../Pages/Accounts/Account";
 import Register from "../Registers/Register";
 import { useNavigate } from "react-router-dom";
 
@@ -46,6 +46,7 @@ const Login = () => {
         password,
       })
         .then((res) => {
+          console.log(res.data)
           const notify = () =>
             toast.success(`Login success!!! Welcome ${username}`, {
               position: "top-right",

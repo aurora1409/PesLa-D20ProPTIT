@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import "../Account.css";
+import "../../Pages/Accounts/Account.css";
 // import store from "../../../Store/index";
-import Axios from "../../../Axios/index";
+import Axios from "../../Axios/index";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { Form, Link } from "react-router-dom";
@@ -11,12 +11,12 @@ import {
   IsRegister,
   IsLoginState,
   IsRegisterState,
-} from "../../../Store/index";
+} from "../../Store/index";
 import { useState } from "react";
-import Headers from "../../Header";
-import Footer from "../../Footer";
+import Headers from "../Header";
+import Footer from "../Footer";
 import { ToastContainer, toast } from "react-toastify";
-import Account from "../Account";
+import Account from "../../Pages/Accounts/Account";
 import Login from "../Logins/Login";
 import { useNavigate } from "react-router-dom";
 
@@ -35,7 +35,7 @@ const Register = () => {
   // console.log(user);
   //const [firstname, setFirstname] = useState('');
   const handleClickRegister = (e) => {
-    console.log(firstName)
+    // console.log(firstName)
     if (!e.detail || e.detail == 1) {
       console.log("register");
       Axios("/register/", "POST", {

@@ -15,11 +15,11 @@ import {
   IsRegisterState,
 } from "../../Store/index";
 import { useState } from "react";
-import Headers from "../Header";
-import Footer from "../Footer";
+import Headers from "../../Components/Header";
+import Footer from "../../Components/Footer";
 import { ToastContainer, toast } from "react-toastify";
-import Register from "./Registers/Register";
-import Login from "./Logins/Login";
+import Register from "../../Components/Registers/Register";
+import Login from "../../Components/Logins/Login";
 
 // export default khong can dau ngoac {}, ten gi cung duoc
 // export bthg can dau {}
@@ -50,7 +50,7 @@ const Account = () => {
   // // }, [])
   // console.log(user.userRegister)
   // }
-
+  console.log("hi account")
 
   var profile = (
     <div className="wrap">
@@ -211,10 +211,10 @@ const Account = () => {
   return (
       <>
         <div className="regis">
-        <Headers />
+          <Headers />
         
           {/* {console.log(user.userRegister[0].username)} */}
-          {/* {console.log(user.isLoginState)} */}
+          {console.log(user.isLoginState)}
           {user.isLoginState ? profile : undefined}
         {/* {console.log(4)} */}
         {/* {profile} */}
