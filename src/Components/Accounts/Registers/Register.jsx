@@ -11,7 +11,7 @@ import {
   IsRegister,
   IsLoginState,
   IsRegisterState,
-} from "../../../Store/User";
+} from "../../../Store/index";
 import { useState } from "react";
 import Headers from "../../Header";
 import Footer from "../../Footer";
@@ -34,66 +34,80 @@ const Register = () => {
   const [password, setPassword] = useState("");
   // console.log(user);
   //const [firstname, setFirstname] = useState('');
-  const handleClickRegister = () => {
-    console.log("register");
-    Axios("/register/", "POST", {
-      username,
-      password,
-      first_name: firstName,
-      last_name: lastName,
-      email,
-    })
-      .then((res) => {
-        // console.log(res.data);
-        // console.log("hi");
-        // dispatch(addNewUser(res.data));
-        navigate("/login")
-        // dispatch()
-        // console.log(res.data)
-        // localStorage.setItem("token", res.data.token.toString());
-        // console.log(localStorage.getItem("token"));
-        // console.log(user);
+  const handleClickRegister = (e) => {
+    console.log(firstName)
+    if (!e.detail || e.detail == 1) {
+      console.log("register");
+      Axios("/register/", "POST", {
+        username,
+        password,
+        first_name: firstName,
+        last_name: lastName,
+        email,
       })
-      .catch(err => {
-        console.log(err);
-      });
+        .then((res) => {
+          const notify = () =>
+            toast.success(`Login success!!! Welcome ${username}`, {
+              position: "top-right",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          notify();
+          console.log(res.data);
+          // console.log("hi");
+          // dispatch(addNewUser(res.data));
+          navigate("/login");
+
+          // dispatch()
+          // console.log(res.data)
+          // localStorage.setItem("token", res.data.token.toString());
+          // console.log(localStorage.getItem("token"));
+          // console.log(user);
+        })
+        .catch((err) => {
+          // 2 type of error:
+          // chua dien het cac truong
+          // user name da ton tai
+
+          const notify = () =>
+            toast.warning(`You must fill all fields!`, {
+              position: "top-right",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          const notify2 = () =>
+            toast.warning(`username already exist!!!`, {
+              position: "top-right",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          // notify();
+          console.log(username)
+          username=="" ? notify(): notify2();
+          console.log(err);
+        });
+    }
   };
 
   // dung setState de cho dang nhap va dang ki thay phien an hien, tuc la neu true
   // thi an false thi hien ..... dung if else trong setstate, truyen state vao duoi
   // style display cua div hay button
 
-  // const changeInput = data => {
-  //   dispatch(setFirstName(data.target.value))
-  // }
-  // useEffect(() => {
-  //   //   console.log("yes")
-  //   let newUser = {
-  //     first_name: "12dymxn",
-  //     last_name: "m12mxi",
-  //     email: "x@",
-  //     username: "dx1ud1e",
-  //     password: "dxfum11",
-  //   };
-
-  //   Axios("register/", "POST", newUser)
-  //     .then((res) => {
-  //       // console.log(res);
-  //       // console.log("hi");
-  //       dispatch(addNewUser(res.data));
-  //       localStorage.setItem("token", res.data.token.toString());
-  //       // console.log(localStorage.getItem("token"));
-  //       // console.log(user);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
-  //console.log(user)
-  const notify = () => {
-    toast("You should login first!");
-    <ToastContainer />;
-  };
   return (
     <>
       <div className="regis">
@@ -110,11 +124,8 @@ const Register = () => {
                 aria-label="Close"
                 onClick={() => {
                   navigate("/account");
-                  // <Account/>
-                  // return user.isLogin ? <Account /> : account
-                  console.log(user.isLogin);
-                  // <Account />
-                }}></button>
+                }}
+              ></button>
             </div>
             <div className="wrap">
               <div className="registerMain">
@@ -148,6 +159,7 @@ const Register = () => {
                   placeholder="Email"
                   onChange={e => {
                     setEmail(e.target.value);
+                  
                     //console.log(firstName)
                   }}
                 />
@@ -177,7 +189,8 @@ const Register = () => {
               <button
                 className="registerBtn"
                 id="registerBtnMain"
-                onClick={handleClickRegister}>
+                onClick={(e) => handleClickRegister(e)}
+              >
                 Register
               </button>
               <div className="separateWrap">
