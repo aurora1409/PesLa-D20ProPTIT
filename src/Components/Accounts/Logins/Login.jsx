@@ -35,17 +35,16 @@ const Login = () => {
   // dispatch(IsLogin(true))
   // console.log(user);
   //const [firstname, setFirstname] = useState('');
-  const handleClickLogin = (e) => {
+  const handleClickLogin = e => {
     if (!e.detail || e.detail == 1) {
-
       console.log("login");
-      console.log(dispatch(checkUser({username, password})))
-  
+      console.log(dispatch(checkUser({ username, password })));
+
       Axios("/login/", "POST", {
         username,
         password,
       })
-        .then((res) => {
+        .then(res => {
           const notify = () =>
             toast.success(`Login success!!! Welcome ${username}`, {
               position: "top-right",
@@ -59,23 +58,23 @@ const Login = () => {
             });
           notify();
           dispatch(IsLoginState(true));
-  
+
           localStorage.setItem("token", res.data.token);
-  
+
           AxiosToken("/profile/", "GET", res.data.token)
-            .then((res) => {
+            .then(res => {
               // userLogin = res.data;
               // console.log(2);
               console.log(res.data);
               dispatch(addNewUser(res.data));
               navigate("/account");
             })
-            .catch((err) => {
+            .catch(err => {
               // console.log("sai")
               console.log(err);
             });
         })
-        .catch((err) => {
+        .catch(err => {
           const notify = () =>
             toast.warning(`You must fill all fields!`, {
               position: "top-right",
@@ -108,8 +107,8 @@ const Login = () => {
               progress: undefined,
               theme: "light",
             });
-          }
-          username=="" ? notify(): notify2();
+          };
+          username == "" ? notify() : notify2();
           // console.log("sai");
           console.log(err);
         });
@@ -142,8 +141,7 @@ const Login = () => {
               // type="button"
               className="btnClose"
               // aria-label="Close"
-              onClick={handleClickClose}
-            ></button>
+              onClick={handleClickClose}></button>
           </div>
           <div className="wrap">
             <form className="registerMain">
@@ -179,8 +177,7 @@ const Login = () => {
             <button
               className="registerBtn"
               id="loginBtnMain"
-              onClick={e=>handleClickLogin(e)}
-            >
+              onClick={e => handleClickLogin(e)}>
               {/* <Link to="/account">Login</Link> */}
               Login
               {/* {navigate("/register")} */}
@@ -231,7 +228,6 @@ const Login = () => {
     </div>
   );
 
-  
   return (
     <>
       {account2}

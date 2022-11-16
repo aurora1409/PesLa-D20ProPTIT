@@ -34,8 +34,8 @@ const Register = () => {
   const [password, setPassword] = useState("");
   // console.log(user);
   //const [firstname, setFirstname] = useState('');
-  const handleClickRegister = (e) => {
-    console.log(firstName)
+  const handleClickRegister = e => {
+    console.log(firstName);
     if (!e.detail || e.detail == 1) {
       console.log("register");
       Axios("/register/", "POST", {
@@ -45,7 +45,7 @@ const Register = () => {
         last_name: lastName,
         email,
       })
-        .then((res) => {
+        .then(res => {
           const notify = () =>
             toast.success(`Login success!!! Welcome ${username}`, {
               position: "top-right",
@@ -69,7 +69,7 @@ const Register = () => {
           // console.log(localStorage.getItem("token"));
           // console.log(user);
         })
-        .catch((err) => {
+        .catch(err => {
           // 2 type of error:
           // chua dien het cac truong
           // user name da ton tai
@@ -97,8 +97,8 @@ const Register = () => {
               theme: "light",
             });
           // notify();
-          console.log(username)
-          username=="" ? notify(): notify2();
+          console.log(username);
+          username == "" ? notify() : notify2();
           console.log(err);
         });
     }
@@ -124,8 +124,7 @@ const Register = () => {
                 aria-label="Close"
                 onClick={() => {
                   navigate("/account");
-                }}
-              ></button>
+                }}></button>
             </div>
             <div className="wrap">
               <div className="registerMain">
@@ -159,7 +158,7 @@ const Register = () => {
                   placeholder="Email"
                   onChange={e => {
                     setEmail(e.target.value);
-                  
+
                     //console.log(firstName)
                   }}
                 />
@@ -189,8 +188,7 @@ const Register = () => {
               <button
                 className="registerBtn"
                 id="registerBtnMain"
-                onClick={(e) => handleClickRegister(e)}
-              >
+                onClick={e => handleClickRegister(e)}>
                 Register
               </button>
               <div className="separateWrap">
