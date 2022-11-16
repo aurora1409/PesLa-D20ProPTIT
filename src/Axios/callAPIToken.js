@@ -5,9 +5,9 @@ function AxiosToken(endpoint, method = "GET", token) {
   return axios({
     method: method,
     url: baseURL + endpoint,
-    // headers: {
-    //   Authorization: "Bearer " + token,
-    // },
+    headers: {
+      Authorization: "Bearer " + token,
+    },
   });
 }
 
