@@ -1,19 +1,11 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import "../../grid.css";
+import { IsLoginState } from "../../Store/User/index";
 import MenuCart from "../Cart";
 import "./index.scss";
-import {
-  addNewUser,
-  IsLogin,
-  IsRegister,
-  IsLoginState,
-  IsRegisterState,
-} from "../../Store/User/index";
-import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-
 
 const Header = () => {
   const user = useSelector(state => state.user);
@@ -75,8 +67,7 @@ const Header = () => {
                   notify();
                   dispatch(IsLoginState(false));
                   navigate("/");
-                }}
-              >
+                }}>
                 <i className="fa-solid fa-arrow-right-to-bracket"></i>
               </div>
             </div>
