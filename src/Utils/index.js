@@ -1,5 +1,33 @@
-// chứa hàm mà nhiều component khác nhau cần dùng
+const getIdURL = () => {
+  const URL = window.location.href.toString();
+  let id = "";
+  for (let i = URL.length - 1; i >= 0; i--) {
+    if (URL[i] >= "0" && URL[i] <= "9") {
+      id = URL[i] + id;
+    } else {
+      break;
+    }
+  }
+  return id;
+};
 
-// tính checkout ( tổng gian hàng = 2tr6 )
-// hàm tính tổng // for -> tính tổng
-export function Sum() {} // component cart sẽ import , và icon bên phải trang page sẽ import dùng chung
+const getIdItem = e => {
+  let tag = e.target;
+  while (!tag.hasAttribute("id")) {
+    tag = tag.parentElement;
+  }
+  return tag.getAttribute("id");
+};
+
+const scrollTop = () => {
+  const $ = require("jquery");
+  $("html").animate({ scrollTop: 0 }, 300);
+};
+
+const totalProduct = proproductListduct => {
+  return proproductListduct.reduce((perVal, curVal, curIdx) => {
+    return perVal + curVal[0].price * curVal[1];
+  }, 0);
+};
+
+export { getIdURL, scrollTop, totalProduct, getIdItem };

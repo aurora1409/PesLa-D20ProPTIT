@@ -1,14 +1,15 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
-import Headers from "../Header";
 import "./index.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import Footer from "../Footer";
+
+import Headers from "../../Components/Header";
+import Footer from "../../Components/Footer";
 
 const PrevArrow = props => {
-  const { className, style, onClick, styleArrowWrap } = props;
+  const { onClick, styleArrowWrap } = props;
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
       <div
@@ -27,7 +28,7 @@ const PrevArrow = props => {
 };
 
 const NextArrow = props => {
-  const { className, style, onClick, styleArrowWrap } = props;
+  const { onClick, styleArrowWrap } = props;
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
       <div
@@ -46,7 +47,6 @@ const NextArrow = props => {
 };
 
 const HomePage = () => {
-  console.log("YES1");
   const styleArrowWrap = {
     position: "absolute",
     top: 0,
@@ -69,9 +69,7 @@ const HomePage = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
-    appendDots: function (dots) {
-      return <ul className="homepage__slider__dots__ul">{dots}</ul>;
-    },
+
     customPaging: function (i) {
       return (
         <button
