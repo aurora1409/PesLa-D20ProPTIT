@@ -1,14 +1,26 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import "../../grid.css";
 import MenuCart from "../Cart";
 import "./index.scss";
+import {
+  addNewUser,
+  IsLogin,
+  IsRegister,
+  IsLoginState,
+  IsRegisterState,
+} from "../../Store/User/index";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+
 
 const Header = () => {
   const user = useSelector(state => state.user);
   const productList = useSelector(state => state.productadded).productList;
   const [hideCart, setHideCart] = useState(true);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleClickMenuCart = () => {
     setHideCart(false);
   };
@@ -46,7 +58,25 @@ const Header = () => {
               <div className="header__higher__btn-theme">
                 <i className="fa-solid fa-moon"></i>
               </div>
-              <div className="header__higher__btn-auth">
+              <div
+                className="header__higher__btn-auth"
+                onClick={() => {
+                  const notify = () =>
+                    toast.success(`Logout success!!!`, {
+                      position: "top-right",
+                      autoClose: 2000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: "light",
+                    });
+                  notify();
+                  dispatch(IsLoginState(false));
+                  navigate("/");
+                }}
+              >
                 <i className="fa-solid fa-arrow-right-to-bracket"></i>
               </div>
             </div>

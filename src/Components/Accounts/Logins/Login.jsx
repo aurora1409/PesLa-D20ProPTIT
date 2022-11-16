@@ -12,7 +12,8 @@ import {
   IsRegister,
   IsLoginState,
   IsRegisterState,
-} from "../../..//Store/User";
+  checkUser,
+} from "../../../Store/User/index";
 import { useState } from "react";
 import Headers from "../../Header";
 import Footer from "../../Footer";
@@ -30,66 +31,93 @@ const Login = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  // const notify = () => toast(`Login success!!! Welcome ${username}`);
   // dispatch(IsLogin(true))
   // console.log(user);
   //const [firstname, setFirstname] = useState('');
-  const handleClickLogin = () => {
-    console.log("login");
-    Axios("/login/", "POST", {
-      username,
-      password,
-    })
-      .then(res => {
-        dispatch(IsLoginState(true));
-        localStorage.setItem("token", res.data.token);
+  const handleClickLogin = e => {
+    if (!e.detail || e.detail == 1) {
+      console.log("login");
+      console.log(dispatch(checkUser({ username, password })));
 
-        AxiosToken("/profile/", "GET", res.data.token)
-          .then(res => {
-            // userLogin = res.data;
-            // console.log(2);
-            console.log(res.data);
-            dispatch(addNewUser(res.data));
-            navigate("/account");
-          })
-          .catch(err => {
-            console.log(err);
-          });
-        // console.log(user.isLoginState)
-        // console.log(res.data);
-        // if(res.data.token!=null) navigate("/account")
-        // console.log("hi");
-        // dispatch(addNewUser(res.data));
-        // console.log( typeof res.data.token)
-        // console.log(localStorage.getItem("token"));
-        // console.log(user);
-        // <>
-        //   <Link to="/account"></Link>
-        // </>
+      Axios("/login/", "POST", {
+        username,
+        password,
       })
-      .catch(err => {
-        console.log(err);
-      });
+        .then(res => {
+          const notify = () =>
+            toast.success(`Login success!!! Welcome ${username}`, {
+              position: "top-right",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          notify();
+          dispatch(IsLoginState(true));
+
+          localStorage.setItem("token", res.data.token);
+
+          AxiosToken("/profile/", "GET", res.data.token)
+            .then(res => {
+              // userLogin = res.data;
+              // console.log(2);
+              console.log(res.data);
+              dispatch(addNewUser(res.data));
+              navigate("/account");
+            })
+            .catch(err => {
+              // console.log("sai")
+              console.log(err);
+            });
+        })
+        .catch(err => {
+          const notify = () =>
+            toast.warning(`You must fill all fields!`, {
+              position: "top-right",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          const notify2 = () => {
+            toast.warning(`Account does not exist!!!`, {
+              position: "top-right",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+            toast.warning(`Login failed!!!`, {
+              position: "top-right",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          };
+          username == "" ? notify() : notify2();
+          // console.log("sai");
+          console.log(err);
+        });
+    }
   };
   // dispatch(IsLoginState(false));
 
   var handleClickClose = () => {
-    // dispatch(IsLogin(false))
-    // dispatch(IsLoginState(false))
     navigate("/account");
-    // return <>
-    //   <Link to="/account"></Link>
-    // </>
-    // return useEffect(
-    // () => {
-    // <Account/>
-    // console.log(user.isLoginState);
-    // dispatch(IsLoginState(false));
-    // dispatch(IsRegisterState(true))
-    // console.log(user.isLoginState);
-    // return account
-    // return user.isLogin ? <Account /> : account
-    // <Account />
-    // }, [])
   };
   // useEffect (handleClickClose, [user.isLoginState])
 
@@ -113,35 +141,35 @@ const Login = () => {
               // type="button"
               className="btnClose"
               // aria-label="Close"
-              onClick={handleClickClose}>
-              {/* <NavLink to="/account" className="btnClose"></NavLink> */}
-            </button>
+              onClick={handleClickClose}></button>
           </div>
           <div className="wrap">
-            <div className="registerMain">
+            <form className="registerMain">
               <input
                 type="text"
                 className="inputRegister"
+                name="username"
                 id="username"
-                required
                 placeholder="UserName"
                 onChange={e => {
                   setUsername(e.target.value);
                   //console.log(firstName)
                 }}
+                required
               />
               <input
                 type="password"
                 className="inputRegister"
+                name="password"
                 id="password"
-                required
                 placeholder="Password"
                 onChange={e => {
                   setPassword(e.target.value);
                   //console.log(firstName)
                 }}
+                required
               />
-            </div>
+            </form>
             <div className="checkSaveLogin">
               <input type="checkbox" className="check" name="checkSave" />
               <label htmlFor="checkSave">Remember Password</label>
@@ -149,7 +177,7 @@ const Login = () => {
             <button
               className="registerBtn"
               id="loginBtnMain"
-              onClick={handleClickLogin}>
+              onClick={e => handleClickLogin(e)}>
               {/* <Link to="/account">Login</Link> */}
               Login
               {/* {navigate("/register")} */}
@@ -200,10 +228,6 @@ const Login = () => {
     </div>
   );
 
-  const notify = () => {
-    toast("You should login first!");
-    <ToastContainer />;
-  };
   return (
     <>
       {account2}
