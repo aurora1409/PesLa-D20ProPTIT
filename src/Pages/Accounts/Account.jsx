@@ -46,7 +46,7 @@ const Account = () => {
   //     })
   //     .catch((err) => {
   //       console.log(err);
-  //     }); 
+  //     });
   // // }, [])
   // console.log(user.userRegister)
   // }
@@ -91,8 +91,11 @@ const Account = () => {
                   <div className="avatar"></div>
                   <div className="nameUser">
                     <div className="proName">
-                      {user.userRegister[user.userRegister.length - 1].first_name + " "+
-                        user.userRegister[user.userRegister.length - 1].last_name}
+                      {user.userRegister[user.userRegister.length - 1]
+                        .first_name +
+                        " " +
+                        user.userRegister[user.userRegister.length - 1]
+                          .last_name}
                     </div>
                     <div className="proUser">
                       {/* {console.log(user.userRegister.length - 1)} */}
@@ -125,12 +128,15 @@ const Account = () => {
               <div className="col l-12">
                 <div className="proBodyInfo">
                   <div className="proLabel">First Name</div>
-                  <input type="text"
+                  <input
+                    type="text"
                     className="proBodyInfoItem"
-                    value={user.userRegister[user.userRegister.length - 1].first_name}
+                    value={
+                      user.userRegister[user.userRegister.length - 1].first_name
+                    }
                     // defaultValue or read-only: chi xem
                     // value them onChange de sua
-                    onChange={()=>{}}
+                    onChange={() => {}}
                   />
                 </div>
                 <div className="proBodyInfo">
@@ -138,21 +144,27 @@ const Account = () => {
                   <input
                     type="text"
                     className="proBodyInfoItem"
-                    value={user.userRegister[user.userRegister.length - 1].last_name}
-                    onChange={()=>{}}
+                    value={
+                      user.userRegister[user.userRegister.length - 1].last_name
+                    }
+                    onChange={() => {}}
                   />
                 </div>
                 <div className="proBodyInfo">
                   <div className="proLabel">Email</div>
-                  <input type="text"
+                  <input
+                    type="text"
                     className="proBodyInfoItem"
-                    value={user.userRegister[user.userRegister.length - 1].email}
-                    onChange={()=>{}}
+                    value={
+                      user.userRegister[user.userRegister.length - 1].email
+                    }
+                    onChange={() => {}}
                   />
                 </div>
                 <div className="proBodyInfo">
                   <div className="proLabel">Phone Number</div>
-                  <input type="text"
+                  <input
+                    type="text"
                     className="proBodyInfoItem"
                     // value={user.userRegister[user.userRegister.length - 1].phone_number}
                   />
@@ -199,15 +211,11 @@ const Account = () => {
     </div>
   );
 
-  
-  // if (!user.isLoginState)
-  //   return <>
-      
-  //       <div className="regis">
-  //       <Headers />
-  //       <Footer/>
-  //       </div>   
-  // </>
+  const notify = () => {
+    toast("You should login first!");
+    <ToastContainer />;
+  };
+  if (!user.isLoginState) return <></>;
   return (
       <>
         <div className="regis">
@@ -217,16 +225,15 @@ const Account = () => {
           {console.log(user.isLoginState)}
           {user.isLoginState ? profile : undefined}
         {/* {console.log(4)} */}
-        {/* {profile} */}
-          {/* {user.isLogin ? dispatch(IsLoginState(false)) && profile : dispatch(IsLoginState(true)) && <Login/>
+        {profile}
+        {/* {user.isLogin ? dispatch(IsLoginState(false)) && profile : dispatch(IsLoginState(true)) && <Login/>
           }  */}
-          <Footer />
-          {/* <Register /> */}
-          {/* <Login/> */}
-        </div>
-      </>
-    );
-  
+        <Footer />
+        {/* <Register /> */}
+        {/* <Login/> */}
+      </div>
+    </>
+  );
 };
 
 export default Account;
