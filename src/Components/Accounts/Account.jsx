@@ -199,20 +199,25 @@ const Account = () => {
     </div>
   );
 
-  const notify = () => {
-    toast("You should login first!");
-    <ToastContainer />;
-  };
-  if(!user.isLoginState) return <></>
+  
+  // if (!user.isLoginState)
+  //   return <>
+      
+  //       <div className="regis">
+  //       <Headers />
+  //       <Footer/>
+  //       </div>   
+  // </>
   return (
       <>
         <div className="regis">
-          <Headers />
+        <Headers />
+        
           {/* {console.log(user.userRegister[0].username)} */}
           {/* {console.log(user.isLoginState)} */}
-          {/* {user.isLoginState ? profile : undefined} */}
+          {user.isLoginState ? profile : undefined}
         {/* {console.log(4)} */}
-        {profile}
+        {/* {profile} */}
           {/* {user.isLogin ? dispatch(IsLoginState(false)) && profile : dispatch(IsLoginState(true)) && <Login/>
           }  */}
           <Footer />
