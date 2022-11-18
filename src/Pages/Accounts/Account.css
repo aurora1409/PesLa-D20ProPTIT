@@ -133,8 +133,15 @@
     border-style: none;
     border-radius: 4px;
     font-size: 0.9rem;
-    color: white
+    color: white;
+    
+    
 }
+.registerBtn:hover {
+    cursor: pointer;
+    /* color: aqua; */
+}
+
 
 #registerBtnMain {
     background-color: rgb(245, 124, 43);

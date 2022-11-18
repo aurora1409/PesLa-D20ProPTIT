@@ -215,7 +215,7 @@ const Account = () => {
     toast("You should login first!");
     <ToastContainer />;
   };
-  if (!user.isLoginState) return <></>;
+  // if (!user.isLoginState) return <></>;
   return (
       <>
         <div className="regis">
@@ -225,7 +225,7 @@ const Account = () => {
           {console.log(user.isLoginState)}
           {user.isLoginState ? profile : undefined}
         {/* {console.log(4)} */}
-        {profile}
+        {/* {profile} */}
         {/* {user.isLogin ? dispatch(IsLoginState(false)) && profile : dispatch(IsLoginState(true)) && <Login/>
           }  */}
         <Footer />
