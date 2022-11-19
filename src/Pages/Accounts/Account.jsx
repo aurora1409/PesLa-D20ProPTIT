@@ -25,212 +25,186 @@ import Login from "../../Components/Logins/Login";
 // export bthg can dau {}
 
 const Account = () => {
-  const user = useSelector(state => state.user);
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  // var userLogin;
-  // console.log(typeof user.isLogin)
-  // dispatch(IsLogin(true))
-  // console.log(user.isLogin)
-  // const getUser = () => {
-  // var token = localStorage.getItem("token");
-  // console.log(1);
-  // console.log(token)
-  // useLayoutEffect(() => {
-  //   AxiosToken("/profile/", "GET", token)
-  //     .then((res) => {
-  //       // userLogin = res.data;
-  //       console.log(2);
-  //       console.log(res.data);
-  //       dispatch(addNewUser(res.data));
 
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // // }, [])
-  // console.log(user.userRegister)
-  // }
-  console.log("hi account")
-
-  var profile = (
-    <div className="wrap">
-      <div className="grid wide wrapMin">
-        <div className="row">
-          <div className="col l-2">
-            <div className="dashboard">
-              <div className="dbTitle">DASHBOARD</div>
-              <div className="dbWrap">
-                <div className="dbItem item1">
-                  <i className="fa-solid fa-envelope iconItem"></i>
-                  <span className="itemTile">Profile</span>
-                </div>
-                <div className="dbItem item2">
-                  <i className="fa-solid fa-envelope iconItem1"></i>
-                  <span className="itemTile">Orders</span>
-                </div>
-                <div className="dbItem item3">
-                  <i className="fa-solid fa-envelope iconItem1"></i>
-                  <span className="itemTile">Wishlist</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col l-10 bigWrap">
-            <div className="proTitleWrap row">
-              <div className="proTitle col l-6">
-                <i className="fa-solid fa-envelope iconItem1"></i>
-                <span className="itemTileMain">My Profile</span>
-              </div>
-              <div className="col l-6 proEditBtn">
-                <button className="proEdit">Edit Profile</button>
-              </div>
-            </div>
-            <div className="proHeader row">
-              <div className="proAvatar col l-6">
-                <div className="wrapAvt">
-                  <div className="avatar"></div>
-                  <div className="nameUser">
-                    <div className="proName">
-                      {user.userRegister[user.userRegister.length - 1]
-                        .first_name +
-                        " " +
-                        user.userRegister[user.userRegister.length - 1]
-                          .last_name}
-                    </div>
-                    <div className="proUser">
-                      {/* {console.log(user.userRegister.length - 1)} */}
-                      {user.userRegister[user.userRegister.length - 1].username}
-                    </div>
-                  </div>
-                </div>
-                <div className="typeUser">DIAMOND USER</div>
-              </div>
-              <div className="proInfo col l-6">
-                <div className="infoItem">
-                  <div className="infoItemNumber">10</div>
-                  <div className="infoItemName">Pending</div>
-                </div>
-                <div className="infoItem">
-                  <div className="infoItemNumber">10</div>
-                  <div className="infoItemName">Shipping</div>
-                </div>
-                <div className="infoItem">
-                  <div className="infoItemNumber">10</div>
-                  <div className="infoItemName">Delivered</div>
-                </div>
-                <div className="infoItem">
-                  <div className="infoItemNumber">10</div>
-                  <div className="infoItemName">Cancelled</div>
-                </div>
-              </div>
-            </div>
-            <div className="proBody row">
-              <div className="col l-12">
-                <div className="proBodyInfo">
-                  <div className="proLabel">First Name</div>
-                  <input
-                    type="text"
-                    className="proBodyInfoItem"
-                    value={
-                      user.userRegister[user.userRegister.length - 1].first_name
-                    }
-                    // defaultValue or read-only: chi xem
-                    // value them onChange de sua
-                    onChange={() => {}}
-                  />
-                </div>
-                <div className="proBodyInfo">
-                  <div className="proLabel">Last Name</div>
-                  <input
-                    type="text"
-                    className="proBodyInfoItem"
-                    value={
-                      user.userRegister[user.userRegister.length - 1].last_name
-                    }
-                    onChange={() => {}}
-                  />
-                </div>
-                <div className="proBodyInfo">
-                  <div className="proLabel">Email</div>
-                  <input
-                    type="text"
-                    className="proBodyInfoItem"
-                    value={
-                      user.userRegister[user.userRegister.length - 1].email
-                    }
-                    onChange={() => {}}
-                  />
-                </div>
-                <div className="proBodyInfo">
-                  <div className="proLabel">Phone Number</div>
-                  <input
-                    type="text"
-                    className="proBodyInfoItem"
-                    // value={user.userRegister[user.userRegister.length - 1].phone_number}
-                  />
-                </div>
-                <div className="proBodyGender">
-                  <div className="proLabelGender">Gender</div>
-                  <div className="genderWrap">
-                    <input
-                      name="gender"
-                      type="radio"
-                      id="radio1"
-                      className="proBodyGenderItem"
-                    />
-                    <label htmlFor="radio1">Male</label>
-                  </div>
-                  <div className="genderWrap">
-                    <input
-                      name="gender"
-                      type="radio"
-                      id="radio1"
-                      className="proBodyGenderItem"
-                    />
-                    <label htmlFor="radio1">Female</label>
-                  </div>
-                  <div className="genderWrap">
-                    <input
-                      name="gender"
-                      type="radio"
-                      id="radio1"
-                      className="proBodyGenderItem"
-                    />
-                    <label htmlFor="radio1">Other</label>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="content">
-            {/* {console.log(3)} */}
-            {/* <h2>{}</h2> */}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+  console.log("hi account");
 
   const notify = () => {
     toast("You should login first!");
     <ToastContainer />;
   };
-  // if (!user.isLoginState) return <></>;
-  return (
+  console.log(user.isLoginState);
+  if (!user.isLoginState)
+    return (
       <>
-        <div className="regis">
-          <Headers />
-        
-          {/* {console.log(user.userRegister[0].username)} */}
-          {console.log(user.isLoginState)}
-          {user.isLoginState ? profile : undefined}
-        {/* {console.log(4)} */}
-        {/* {profile} */}
-        {/* {user.isLogin ? dispatch(IsLoginState(false)) && profile : dispatch(IsLoginState(true)) && <Login/>
-          }  */}
+        <Headers />
         <Footer />
-        {/* <Register /> */}
-        {/* <Login/> */}
+      </>
+    );
+  return (
+    <>
+      <div className="regis">
+        <Headers />
+        {/* {user.isLoginState ? profile : undefined} */}
+        <div className="wrap">
+          <div className="grid wide wrapMin">
+            <div className="row">
+              <div className="col l-2">
+                <div className="dashboard">
+                  <div className="dbTitle">DASHBOARD</div>
+                  <div className="dbWrap">
+                    <div className="dbItem item1">
+                      <i className="fa-solid fa-envelope iconItem"></i>
+                      <span className="itemTile">Profile</span>
+                    </div>
+                    <div className="dbItem item2">
+                      <i className="fa-solid fa-envelope iconItem1"></i>
+                      <span className="itemTile">Orders</span>
+                    </div>
+                    <div className="dbItem item3">
+                      <i className="fa-solid fa-envelope iconItem1"></i>
+                      <span className="itemTile">Wishlist</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col l-10 bigWrap">
+                <div className="proTitleWrap row">
+                  <div className="proTitle col l-6">
+                    <i className="fa-solid fa-envelope iconItem1"></i>
+                    <span className="itemTileMain">My Profile</span>
+                  </div>
+                  <div className="col l-6 proEditBtn">
+                    <button className="proEdit">Edit Profile</button>
+                  </div>
+                </div>
+                <div className="proHeader row">
+                  <div className="proAvatar col l-6">
+                    <div className="wrapAvt">
+                      <div className="avatar"></div>
+                      <div className="nameUser">
+                        <div className="proName">
+                          {user.userRegister[user.userRegister.length - 1]
+                            .first_name +
+                            " " +
+                            user.userRegister[user.userRegister.length - 1]
+                              .last_name}
+                        </div>
+                        <div className="proUser">
+                          {/* {console.log(user.userRegister.length - 1)} */}
+                          {
+                            user.userRegister[user.userRegister.length - 1]
+                              .username
+                          }
+                        </div>
+                      </div>
+                    </div>
+                    <div className="typeUser">DIAMOND USER</div>
+                  </div>
+                  <div className="proInfo col l-6">
+                    <div className="infoItem">
+                      <div className="infoItemNumber">10</div>
+                      <div className="infoItemName">Pending</div>
+                    </div>
+                    <div className="infoItem">
+                      <div className="infoItemNumber">10</div>
+                      <div className="infoItemName">Shipping</div>
+                    </div>
+                    <div className="infoItem">
+                      <div className="infoItemNumber">10</div>
+                      <div className="infoItemName">Delivered</div>
+                    </div>
+                    <div className="infoItem">
+                      <div className="infoItemNumber">10</div>
+                      <div className="infoItemName">Cancelled</div>
+                    </div>
+                  </div>
+                </div>
+                <div className="proBody row">
+                  <div className="col l-12">
+                    <div className="proBodyInfo">
+                      <div className="proLabel">First Name</div>
+                      <input
+                        type="text"
+                        className="proBodyInfoItem"
+                        value={
+                          user.userRegister[user.userRegister.length - 1]
+                            .first_name
+                        }
+                        // defaultValue or read-only: chi xem
+                        // value them onChange de sua
+                        onChange={() => {}}
+                      />
+                    </div>
+                    <div className="proBodyInfo">
+                      <div className="proLabel">Last Name</div>
+                      <input
+                        type="text"
+                        className="proBodyInfoItem"
+                        value={
+                          user.userRegister[user.userRegister.length - 1]
+                            .last_name
+                        }
+                        onChange={() => {}}
+                      />
+                    </div>
+                    <div className="proBodyInfo">
+                      <div className="proLabel">Email</div>
+                      <input
+                        type="text"
+                        className="proBodyInfoItem"
+                        value={
+                          user.userRegister[user.userRegister.length - 1].email
+                        }
+                        onChange={() => {}}
+                      />
+                    </div>
+                    <div className="proBodyInfo">
+                      <div className="proLabel">Phone Number</div>
+                      <input
+                        type="text"
+                        className="proBodyInfoItem"
+                        // value={user.userRegister[user.userRegister.length - 1].phone_number}
+                      />
+                    </div>
+                    <div className="proBodyGender">
+                      <div className="proLabelGender">Gender</div>
+                      <div className="genderWrap">
+                        <input
+                          name="gender"
+                          type="radio"
+                          id="radio1"
+                          className="proBodyGenderItem"
+                        />
+                        <label htmlFor="radio1">Male</label>
+                      </div>
+                      <div className="genderWrap">
+                        <input
+                          name="gender"
+                          type="radio"
+                          id="radio1"
+                          className="proBodyGenderItem"
+                        />
+                        <label htmlFor="radio1">Female</label>
+                      </div>
+                      <div className="genderWrap">
+                        <input
+                          name="gender"
+                          type="radio"
+                          id="radio1"
+                          className="proBodyGenderItem"
+                        />
+                        <label htmlFor="radio1">Other</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <Footer />
       </div>
     </>
   );

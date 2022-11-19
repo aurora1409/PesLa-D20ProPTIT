@@ -1,0 +1,54 @@
+@import "../../Config.scss";
+
+.cart-wrap {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    
+}
+
+.menu-cart {
+    border: rgb(223, 223, 223) solid 1px;
+    height: auto;
+}
+
+.cart-title {
+    text-align: left;
+    padding-bottom: 1rem;
+}
+
+.add-order-wrap {
+    border: rgb(223, 223, 223) solid 1px;
+    height: auto;
+    width: 100%;
+    padding: 1.5rem;
+}
+
+.order-total {
+    padding-bottom: 1rem;
+}
+
+.order-amount {
+    display: flex;
+    justify-content: space-between;
+}
+
+.amount-value {
+    color: rgb(235, 139, 30);
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+
+.input-voucher {
+    padding: 0.35rem 0.75rem;
+    margin-left: 5px;
+    margin-bottom: 0.4rem;
+    width: 100%;
+    border-radius: 0.25em;
+    font-size: 1em;
+    line-height: 1.5em;
+    border: 1px solid #ced4da;
+}
+
+.check-out {
+    width: 100%;
+}

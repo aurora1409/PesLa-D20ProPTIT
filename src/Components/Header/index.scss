@@ -4,10 +4,15 @@
   color: rgb(230, 150, 70) !important;
 }
 
+.big-wrap {
+      box-shadow: 5px 0px 8px 4px #d4d1d1;
+}
+
 .header__higher {
   &--wrap {
     border-bottom: 2px solid hsla(0, 0%, 66.7%, 0.3);
     width: 100%;
+    // box-shadow: 5px 5px 8px 0px #d4d1d1;
   }
   display: flex;
   justify-content: space-between;
@@ -126,6 +131,7 @@
 }
 
 .header__nav {
+  
   &__list {
     display: flex;
     list-style: none;

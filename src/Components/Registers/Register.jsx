@@ -11,7 +11,7 @@ import {
   IsRegister,
   IsLoginState,
   IsRegisterState,
-} from "../../Store/index";
+} from "../../Store/User/index";
 import { useState } from "react";
 import Headers from "../Header";
 import Footer from "../Footer";
@@ -47,7 +47,7 @@ const Register = () => {
       })
         .then(res => {
           const notify = () =>
-            toast.success(`Login success!!! Welcome ${username}`, {
+            toast.success("Register success!!!", {
               position: "top-right",
               autoClose: 2000,
               hideProgressBar: false,
@@ -70,21 +70,6 @@ const Register = () => {
           // console.log(user);
         })
         .catch(err => {
-          // 2 type of error:
-          // chua dien het cac truong
-          // user name da ton tai
-
-          const notify = () =>
-            toast.warning(`You must fill all fields!`, {
-              position: "top-right",
-              autoClose: 2000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-            });
           const notify2 = () =>
             toast.warning(`username already exist!!!`, {
               position: "top-right",
@@ -96,9 +81,9 @@ const Register = () => {
               progress: undefined,
               theme: "light",
             });
-          // notify();
-          console.log(username);
-          username == "" ? notify() : notify2();
+          notify2();
+          // console.log(username);
+          // username == "" ? notify() : notify2();
           console.log(err);
         });
     }
@@ -123,6 +108,7 @@ const Register = () => {
                 className="btnClose"
                 aria-label="Close"
                 onClick={() => {
+                  dispatch(IsLoginState(false));
                   navigate("/account");
                 }}></button>
             </div>
