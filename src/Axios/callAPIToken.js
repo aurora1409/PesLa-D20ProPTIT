@@ -1,6 +1,6 @@
 import axios from "axios";
 
-function AxiosToken(endpoint, method = "GET", token) {
+function AxiosToken(endpoint, method = "GET", token, body=[]) {
   let baseURL = "https://petsla-api.herokuapp.com";
   return axios({
     method: method,
@@ -8,6 +8,7 @@ function AxiosToken(endpoint, method = "GET", token) {
     headers: {
       Authorization: "Bearer " + token,
     },
+    data: body
   });
 }
 

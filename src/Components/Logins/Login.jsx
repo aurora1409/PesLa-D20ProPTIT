@@ -118,7 +118,9 @@ const Login = () => {
   // dispatch(IsLoginState(false));
 
   var handleClickClose = () => {
+    dispatch(IsLoginState(false));
     navigate("/account");
+
   };
   // useEffect (handleClickClose, [user.isLoginState])
 

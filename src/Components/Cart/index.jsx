@@ -8,7 +8,8 @@ import {
 } from "../../Store/ProductAdded";
 import { getIdItem, totalProduct } from "../../Utils";
 import "./index.scss";
-export default function MenuCart({ hideCart, setHideCart }) {
+
+function MenuCart({ hideCart, setHideCart }) {
   const productList = useSelector(state => state.productadded).productList;
   const dispatch = useDispatch();
   const handleClose = () => {
@@ -42,7 +43,7 @@ export default function MenuCart({ hideCart, setHideCart }) {
         <div className="menu-cart">
           <div className="menu-cart__header">
             <div className="menu-cart__header-title">
-              Cart: {handleClose} Items
+              Cart: {productList.length} Items
             </div>
             <div className="menu-cart__header-close" onClick={handleClose}>
               <i className="fa-solid fa-xmark btnclose"></i>
@@ -119,3 +120,7 @@ export default function MenuCart({ hideCart, setHideCart }) {
     </>
   );
 }
+
+//export { handleDecrease, handleIncrease, handleRemoveItem }
+
+export default MenuCart
