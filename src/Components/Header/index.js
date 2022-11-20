@@ -14,11 +14,11 @@ import {
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
-
 const Header = () => {
-  const user = useSelector(state => state.user);
-  const productList = useSelector(state => state.productadded).productList;
+  const user = useSelector((state) => state.user);
+  const productList = useSelector((state) => state.productadded).productList;
   const [hideCart, setHideCart] = useState(true);
+  const [isLogout, setLogout] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleClickMenuCart = () => {
@@ -59,27 +59,42 @@ const Header = () => {
                 <div className="header__higher__btn-theme">
                   <i className="fa-solid fa-moon"></i>
                 </div>
-                <div
-                  className="header__higher__btn-auth"
-                  onClick={() => {
-                    const notify = () =>
-                      toast.success(`Logout success!!!`, {
-                        position: "top-right",
-                        autoClose: 2000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "light",
-                      });
-                    notify();
-                    dispatch(IsLoginState(false));
-                    navigate("/");
-                  }}
-                >
-                  <i className="fa-solid fa-arrow-right-to-bracket"></i>
-                </div>
+                {isLogout ? (
+                  <div
+                    className="header__higher__btn-auth"
+                    onClick={() => {
+                      const notify = () =>
+                        toast.success(`Logout success!!!`, {
+                          position: "top-right",
+                          autoClose: 2000,
+                          hideProgressBar: false,
+                          closeOnClick: true,
+                          pauseOnHover: true,
+                          draggable: true,
+                          progress: undefined,
+                          theme: "light",
+                        });
+
+                        setLogout(false)
+                      notify();
+                      dispatch(IsLoginState(false));
+                      navigate("/");
+                    }}
+                  >
+                    <i className="fa-solid fa-user"></i>
+                  </div>
+                ) : (
+                  <div
+                    className="header__higher__btn-auth"
+                    onClick={() => {
+                      setLogout(true)
+                      // dispatch(IsLoginState(true));
+                      navigate("/login");
+                    }}
+                  >
+                    <i className="fa-solid fa-arrow-right-from-bracket"></i>
+                  </div>
+                )}
               </div>
             </div>
           </div>
