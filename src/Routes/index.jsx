@@ -7,6 +7,7 @@ import HomePage from "../Pages/HomePage";
 import Item from "../Pages/Item";
 import Shop from "../Pages/Shop";
 import CustomerInfo from "../Pages/CustomerInfos/CustomerInfo";
+import Order from "../Pages/Orders/Order";
 
 const listRoute = [
   {
@@ -44,6 +45,10 @@ const listRoute = [
   {
     path: "customerInfo",
     component: <CustomerInfo />,
+  },
+  {
+    path: "order",
+    component: <Order/>,
   },
 ];
 

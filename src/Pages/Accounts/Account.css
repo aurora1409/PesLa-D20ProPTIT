@@ -258,12 +258,18 @@
     text-align: right;
 }
 
+.proEditBtn :hover{
+    background-color: rgb(245, 124, 43);
+    color: white;
+    cursor: pointer;
+}
+
 .proEdit{
     border: rgb(245, 124, 43) solid 1px;
     border-radius: 4px;
     background-color: rgb(246, 249, 252);
     color: rgb(245, 124, 43);
-    text-align: right;
+    text-align: center;
     font-size: 1rem;
     padding: 0.2rem 0.5rem;
     width: 100px;
