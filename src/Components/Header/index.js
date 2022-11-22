@@ -4,13 +4,6 @@ import { Link, NavLink } from "react-router-dom";
 import "../../grid.css";
 import MenuCart from "../Cart";
 import "./index.scss";
-import {
-  addNewUser,
-  IsLogin,
-  IsRegister,
-  IsLoginState,
-  IsRegisterState,
-} from "../../Store/User/index";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -95,14 +88,12 @@ const Header = () => {
                   className="header__higher__btn-auth"
                   onClick={handleClickLogout}
                 >
-                  {
-                    localStorage.getItem("token") != undefined ? (
-                      <i className="fa-solid fa-arrow-right-from-bracket"></i>
-                    ) : (
-                        // <i class="fa-solid fa-user"></i>
-                        <i class="fa-solid fa-arrow-right-to-bracket"></i>
-                    )
-                  }
+                  {localStorage.getItem("token") != undefined ? (
+                    <i className="fa-solid fa-arrow-right-from-bracket"></i>
+                  ) : (
+                    // <i class="fa-solid fa-user"></i>
+                    <i className="fa-solid fa-arrow-right-to-bracket"></i>
+                  )}
                 </div>
               </div>
             </div>
@@ -162,7 +153,7 @@ const Header = () => {
               </NavLink>
             </li>
             <li className="header__nav__item">
-              {user.isLoginState ? (
+              {localStorage.getItem("token") != undefined ? (
                 <NavLink to="/account" className="header__nav__item-link">
                   Account
                 </NavLink>

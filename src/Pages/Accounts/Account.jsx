@@ -40,8 +40,9 @@ const Account = () => {
   
 
   // console.log("hi account");
+  // console.log(localStorage.getItem("token"))
 
-  if (!user.isLoginState)
+  if (localStorage.getItem("token") == undefined )
     return (
       <>
         <Headers />

@@ -11,54 +11,67 @@ import {
 } from "../../Store/ProductAdded";
 import { getIdItem, totalProduct } from "../../Utils";
 import "../../Components/Cart/index.scss";
-import "./index.scss"
+import "./index.scss";
 import { Link, NavLink } from "react-router-dom";
-import "../../Components/Header/index.scss"
+import "../../Components/Header/index.scss";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import { useRef } from "react";
 
 export default function Cart() {
-
-  const productList = useSelector(state => state.productadded).productList;
+  const productList = useSelector((state) => state.productadded).productList;
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const ref= useRef(null)
 
-  const handleRemoveItem = e => {
+  const handleRemoveItem = (e) => {
     const id = getIdItem(e);
     dispatch(removeProduct(id));
   };
-  const handleIncrease = e => {
+  const handleIncrease = (e) => {
     const id = getIdItem(e);
     dispatch(increaseProduct(id));
   };
-  const handleDecrease = e => {
+  const handleDecrease = (e) => {
     const id = getIdItem(e);
     dispatch(decreaseProduct(id));
   };
+  const notify = () =>
+    toast.warning(`You must login first!!!`, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
 
   return (
     <>
       <Headers />
-      
+
       <div className="cart-wrap grid wide">
-            <div className="cart-title">
-              <span className="title-cart">
-                <NavLink to="/cart" className="header__nav__item-link">
-                Cart
-              </NavLink>
-              </span>
-              <span> / </span>
-              <span className="title-cart">
-                <NavLink to="/customerInfo" className="header__nav__item-link">
+        <div className="cart-title">
+          <span className="title-cart">
+            <NavLink to="/cart" className="header__nav__item-link">
+              Cart
+            </NavLink>
+          </span>
+          <span> / </span>
+          <span className="title-cart" > 
+            <NavLink to="/customerInfo" className="header__nav__item-link">
                 Customer Info
-              </NavLink>
-              </span>
-            </div>
+               </NavLink> 
+          </span>
+        </div>
         <div className="row">
           <div className="col l-8">
             <div className="menu-cart">
               <div className="menu-cart__header">
                 <div className="menu-cart__header-title">
-                  Cart: {} Items
+                  Cart: {productList.length} Items
                 </div>
               </div>
               <div className="menu-cart__body">
@@ -69,7 +82,8 @@ export default function Cart() {
                         <div className="product-quantity">
                           <button
                             className="quantity-btn quantity-btn--active"
-                            onClick={handleIncrease}>
+                            onClick={handleIncrease}
+                          >
                             <i className="fa-solid fa-plus"></i>
                           </button>
                           <span>{count}</span>
@@ -80,7 +94,8 @@ export default function Cart() {
                           )) || (
                             <button
                               className="quantity-btn quantity-btn--active"
-                              onClick={handleDecrease}>
+                              onClick={handleDecrease}
+                            >
                               <i className="fa-solid fa-minus"></i>
                             </button>
                           )}
@@ -90,9 +105,13 @@ export default function Cart() {
                             className="product-img"
                             style={{
                               backgroundImage: `url(${baseURL + key.images})`,
-                            }}></div>
+                            }}
+                          ></div>
                           <div className="product-description">
-                            <div className="product-name"> {key.product_name}</div>
+                            <div className="product-name">
+                              {" "}
+                              {key.product_name}
+                            </div>
                             <div className="product-price">
                               {key.price.toLocaleString("vi")}đ x {count}
                             </div>
@@ -103,7 +122,8 @@ export default function Cart() {
                         </div>
                         <div
                           className="product-button-close"
-                          onClick={handleRemoveItem}>
+                          onClick={handleRemoveItem}
+                        >
                           <i className="fa-solid fa-xmark btnclose"></i>
                         </div>
                       </div>
@@ -115,7 +135,9 @@ export default function Cart() {
                       src="https://www.leoasher.dev/static/media/sadCat.2335333f.png"
                       alt=""
                     />
-                    <h3 className="no-products-title">There's no item in cart!</h3>
+                    <h3 className="no-products-title">
+                      There's no item in cart!
+                    </h3>
                   </div>
                 )}
               </div>
@@ -126,33 +148,46 @@ export default function Cart() {
               <div className="order-total">
                 <div className="order-amount">
                   <span className="amount-title">Quantity:</span>
-                  <span className="amount-value">{productList.length} Items</span>
+                  <span className="amount-value">
+                    {productList.length} Items
+                  </span>
                 </div>
                 <div className="order-amount">
                   <span className="amount-title">Total Price:</span>
-                  <span className="amount-value">{totalProduct(productList).toLocaleString("vi")}đ</span>
-                  </div>
+                  <span className="amount-value">
+                    {totalProduct(productList).toLocaleString("vi")}đ
+                  </span>
+                </div>
               </div>
               <div className="input-voucher-wrap">
-                <input className="input-voucher" type="text" placeholder="Voucher" />
+                <input
+                  className="input-voucher"
+                  type="text"
+                  placeholder="Voucher"
+                />
               </div>
-                <button type="button" className="menu-cart-btn btn-primary check-out">
-                  Apply voucher
-                </button>
-              <button type="button"
+              <button
+                type="button"
+                className="menu-cart-btn btn-primary check-out"
+              >
+                Apply voucher
+              </button>
+              <button
+                type="button"
+                ref={ref}
                 className="menu-cart-btn btn-view-cart check-out"
-                onClick={() => {
+                onClick={(e) => {
                   navigate("/customerInfo")
                 }}
               >
-                  Checkout
-                </button>
-              </div>
+                Checkout
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
-      <Footer/>
+      <Footer />
     </>
   );
 }

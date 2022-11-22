@@ -169,10 +169,11 @@
 
 .registerFooter {
     color: rgb(178, 182, 184);
-    /* margin-top: 0.6rem; */
+    margin-top: 0.8rem;
+    line-height: 0.8rem;
     background-color: transparent;
     border: none;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 .registerFooter:hover {
