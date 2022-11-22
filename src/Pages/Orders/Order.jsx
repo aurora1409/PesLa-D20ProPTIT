@@ -25,7 +25,7 @@ function Order() {
   useEffect(() => {
     AxiosToken("/get-order/", "GET", token)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setOrders(res.data);
       })
       .catch((err) => {
@@ -33,7 +33,7 @@ function Order() {
       });
     scrollTop();
   }, []);
-  console.log(orders);
+  // console.log(orders);
 
   return (
     <>
@@ -99,7 +99,7 @@ function Order() {
                           {e.created_at}
                         </div>
                         <div className="orderItemPrice col l-2">
-                          {e.total_price}
+                          {parseInt(e.total_price).toLocaleString('vi', {style : 'currency', currency : 'VND'})}
                         </div>
                       </div>
                     );

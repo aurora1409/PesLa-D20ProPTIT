@@ -56,7 +56,7 @@ const Account = () => {
         <div className="wrap">
           <div className="grid wide wrapMin">
             <div className="row">
-              <div className="col l-2">
+              <div className="col l-2 m-2 c-0">
                 <div className="dashboard">
                   <div className="dbTitle">DASHBOARD</div>
                   <div className="dbWrap">
@@ -89,13 +89,13 @@ const Account = () => {
                   </div>
                 </div>
               </div>
-              <div className="col l-10 bigWrap">
+              <div className="col l-10 m-10 c-12 bigWrap">
                 <div className="proTitleWrap row">
-                  <div className="proTitle col l-6">
+                  <div className="proTitle col l-6 m-6 c-6">
                     <i className="fa-solid fa-user iconItem1"></i>
                     <span className="itemTileMain">My Profile</span>
                   </div>
-                  <div className="col l-6 proEditBtn">
+                  <div className="col l-6 m-6 c-6 proEditBtn">
                     {
                       editAble ? <button
                       className="proEdit"
@@ -117,7 +117,7 @@ const Account = () => {
                   </div>
                 </div>
                 <div className="proHeader row">
-                  <div className="proAvatar col l-6">
+                  <div className="proAvatar col l-6 m-6 c-6">
                     <div className="wrapAvt">
                       <div className="avatar"></div>
                       <div className="nameUser">
@@ -139,7 +139,7 @@ const Account = () => {
                     </div>
                     <div className="typeUser">DIAMOND USER</div>
                   </div>
-                  <div className="proInfo col l-6">
+                  <div className="proInfo col l-6 m-6 c-6">
                     <div className="infoItem">
                       <div className="infoItemNumber">10</div>
                       <div className="infoItemName">Pending</div>
@@ -159,7 +159,7 @@ const Account = () => {
                   </div>
                 </div>
                 <div className="proBody row">
-                  <div className="col l-12">
+                  <div className="col l-12 m-12 c-12">
                     <div className="proBodyInfo">
                       <div className="proLabel">First Name</div>
                       <input

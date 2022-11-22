@@ -59,10 +59,11 @@ const Header = () => {
                 <div className="header__higher__btn-theme">
                   <i className="fa-solid fa-moon"></i>
                 </div>
-                {isLogout ? (
-                  <div
-                    className="header__higher__btn-auth"
-                    onClick={() => {
+                {/* {isLogout ? ( */}
+                <div
+                  className="header__higher__btn-auth"
+                  onClick={(e) => {
+                    if (!e.detail || e.detail == 1) {
                       const notify = () =>
                         toast.success(`Logout success!!!`, {
                           position: "top-right",
@@ -74,16 +75,18 @@ const Header = () => {
                           progress: undefined,
                           theme: "light",
                         });
-
-                        setLogout(false)
+  
+                      setLogout(false);
                       notify();
                       dispatch(IsLoginState(false));
                       navigate("/");
-                    }}
-                  >
-                    <i className="fa-solid fa-user"></i>
-                  </div>
-                ) : (
+
+                    }
+                  }}
+                >
+                  <i className="fa-solid fa-arrow-right-from-bracket"></i>
+                </div>
+                {/* ) : (
                   <div
                     className="header__higher__btn-auth"
                     onClick={() => {
@@ -92,9 +95,9 @@ const Header = () => {
                       navigate("/login");
                     }}
                   >
-                    <i className="fa-solid fa-arrow-right-from-bracket"></i>
+                    <i className="fa-solid fa-user"></i>
                   </div>
-                )}
+                )} */}
               </div>
             </div>
           </div>

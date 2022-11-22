@@ -36,6 +36,7 @@ const Register = () => {
   //const [firstname, setFirstname] = useState('');
   const handleClickRegister = (e) => {
     // console.log(firstName)
+    e.preventDefault();
     if (!e.detail || e.detail == 1) {
       console.log("register");
       Axios("/register/", "POST", {
