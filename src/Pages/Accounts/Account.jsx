@@ -39,7 +39,7 @@ const Account = () => {
   const inputOther = useRef();
   
 
-  console.log("hi account");
+  // console.log("hi account");
 
   if (!user.isLoginState)
     return (

@@ -37,7 +37,7 @@ const Login = () => {
   //const [firstname, setFirstname] = useState('');
   const handleClickLogin = e => {
     if (!e.detail || e.detail == 1) {
-      console.log("login");
+      // console.log("login");
       console.log(dispatch(checkUser({ username, password })));
 
       Axios("/login/", "POST", {
@@ -119,7 +119,8 @@ const Login = () => {
 
   var handleClickClose = () => {
     dispatch(IsLoginState(false));
-    navigate("/account");
+    // navigate("/account");
+    navigate(-1);
 
   };
   // useEffect (handleClickClose, [user.isLoginState])

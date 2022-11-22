@@ -32,7 +32,7 @@ const userSlice = createSlice({
       user.isRegister = actions.payload;
     },
     IsLoginState: (user, actions) => {
-      console.log("login state");
+      // console.log("login state");
       user.isLoginState = actions.payload;
     },
     IsRegisterState: (user, actions) => {

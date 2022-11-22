@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import "../../grid.css";
@@ -18,12 +18,44 @@ const Header = () => {
   const user = useSelector((state) => state.user);
   const productList = useSelector((state) => state.productadded).productList;
   const [hideCart, setHideCart] = useState(true);
-  const [isLogout, setLogout] = useState(false);
+  const [token, setToken] = useState();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  
+  // localStorage.setItem("token", "tokenn")
+  // localStorage.removeItem("token");
+  // var token2 = localStorage.getItem("token");
+  // console.log(token);
+ 
+
   const handleClickMenuCart = () => {
     setHideCart(false);
   };
+
+
+  const handleLogout = () => {
+      localStorage.removeItem("token");
+      const notify = () =>
+        toast.success(`Logout success!!!`, {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        notify();
+        navigate("/");  
+  }
+  
+  const handleClickLogout = () => {
+    localStorage.getItem("token") != undefined
+      ? handleLogout() 
+      : navigate("/login") 
+  }
+  
   return (
     <React.Fragment>
       <MenuCart hideCart={hideCart} setHideCart={setHideCart} />
@@ -59,45 +91,19 @@ const Header = () => {
                 <div className="header__higher__btn-theme">
                   <i className="fa-solid fa-moon"></i>
                 </div>
-                {/* {isLogout ? ( */}
                 <div
                   className="header__higher__btn-auth"
-                  onClick={(e) => {
-                    if (!e.detail || e.detail == 1) {
-                      const notify = () =>
-                        toast.success(`Logout success!!!`, {
-                          position: "top-right",
-                          autoClose: 2000,
-                          hideProgressBar: false,
-                          closeOnClick: true,
-                          pauseOnHover: true,
-                          draggable: true,
-                          progress: undefined,
-                          theme: "light",
-                        });
-  
-                      setLogout(false);
-                      notify();
-                      dispatch(IsLoginState(false));
-                      navigate("/");
-
-                    }
-                  }}
+                  onClick={handleClickLogout}
                 >
-                  <i className="fa-solid fa-arrow-right-from-bracket"></i>
+                  {
+                    localStorage.getItem("token") != undefined ? (
+                      <i className="fa-solid fa-arrow-right-from-bracket"></i>
+                    ) : (
+                        // <i class="fa-solid fa-user"></i>
+                        <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                    )
+                  }
                 </div>
-                {/* ) : (
-                  <div
-                    className="header__higher__btn-auth"
-                    onClick={() => {
-                      setLogout(true)
-                      // dispatch(IsLoginState(true));
-                      navigate("/login");
-                    }}
-                  >
-                    <i className="fa-solid fa-user"></i>
-                  </div>
-                )} */}
               </div>
             </div>
           </div>
