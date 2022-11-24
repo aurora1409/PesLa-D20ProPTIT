@@ -14,29 +14,55 @@ function CustomerInfo() {
   const productList = useSelector((state) => state.productadded).productList;
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const ref= useRef(null)
+  const ref = useRef(null)
+  const phoneRef = useRef(null)
   const navigate = useNavigate();
   const [fullName, setFullName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
   const [note, setNote] = useState("");
 
+  const allNumeric = (input) => {
+    var numbers = /^[0-9]+$/
+    if (input.current.value.match(numbers)) {
+      return true
+    } else {
+      const notify = () =>
+        toast.warning(`Phone must be number!!!`, {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      notify();
+      // phoneRef.current.focus();
+      return false
+      
+    }
+  }
+
   // console.log(typeof totalProduct(productList))
+  // console.log(phoneRef.current.value)
   const handleClickSubmit = (e) => {
-    
+    // console.log(phoneRef)
+    if (allNumeric(phoneRef)) {
       // e.preventDefault();
-    // ref.current.disabled = true;
-    // if (!e.detail || e.detail == 1) {
-        var token = localStorage.getItem("token");
-        var orderItems = productList.map(([key, count], idx) => {
-            console.log(e)
-            return {
-                price:key.price,
-                product_id:key.id,
-                quantity:count
-            }
-        })
-        // console.log(token);
+      ref.current.disabled = true;
+      // if (!e.detail || e.detail == 1) {
+      var token = localStorage.getItem("token");
+      var orderItems = productList.map(([key, count], idx) => {
+        console.log(e)
+        return {
+          price: key.price,
+          product_id: key.id,
+          quantity: count
+        }
+      })
+      // console.log(token);
       AxiosToken("/add-order/", "POST", token, {
         address,
         note,
@@ -62,6 +88,9 @@ function CustomerInfo() {
         .catch((err) => {
           console.log(err);
         });
+    } else {
+      ref.current.disabled = false;
+    }
     // }
   };
 
@@ -86,7 +115,7 @@ function CustomerInfo() {
         </div>
           <form className="row" onSubmit={e => {
             e.preventDefault()
-            ref.current.disabled = true;
+            // ref.current.disabled = true;
             const notify = () =>
             toast.warning(`You must login first!!!`, {
               position: "top-right",
@@ -116,10 +145,12 @@ function CustomerInfo() {
             }
             if (localStorage.getItem("token") == undefined) {
               // e.current.disable=true
+              // ref.current.disabled = true;
               notify()
               navigate("/login")
             }
             if (productList.length == 0) {
+              ref.current.disabled = true;
               notify2()
               navigate("/shop")
               // ref.current.disabled = true;
@@ -149,7 +180,8 @@ function CustomerInfo() {
                 <input
                   type="text"
                   className="shippingInfoInput"
-                  placeholder="Phone Number"
+                    placeholder="Phone Number"
+                    ref={phoneRef}
                   required
                   onChange={(e) => {
                     setPhoneNumber(e.target.value);
