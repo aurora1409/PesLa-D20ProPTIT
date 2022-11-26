@@ -26,7 +26,7 @@ export default function ProductList() {
     });
 
   const dispatch = useDispatch();
-  const searchTxt = useSelector(state => state.SearchProducts).searchText;
+  const searchTxt = useSelector((state) => state.SearchProducts).searchText;
   // console.log(searchTxt)
   const [productList, setProductList] = useState([]);
   const [itemPerPage, setItemPerPage] = useState(12);
@@ -35,12 +35,24 @@ export default function ProductList() {
 
   useEffect(() => {
     try {
-      getProductList().then(data => {
+      getProductList().then((data) => {
         // console.log(data)
         setProductList(data);
         if (searchTxt !== "") {
-          var data2 = productList.filter(e =>
-            e.product_name.toLowerCase().includes(searchTxt.toLowerCase()));
+          var data2 = productList.filter((e) =>
+            e.product_name.toLowerCase().includes(searchTxt.toLowerCase())
+          );
+          const notify2 = () =>
+            toast.success(`Search for "${searchTxt}" return ${data2.length} products`, {
+              position: "top-right",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          notify2();
           // console.log(data2)
           setProductList(data2);
         }
@@ -53,14 +65,14 @@ export default function ProductList() {
   }, [searchTxt]);
   // console.log(productList)
 
-  const handleAddItem = e => {
+  const handleAddItem = (e) => {
     notify();
     const id = getIdItem(e);
-    const item = productList.find(value => value.id === id * 1);
+    const item = productList.find((value) => value.id === id * 1);
     dispatch(addProduct(item));
   };
 
-  const handleChangeSort = e => {
+  const handleChangeSort = (e) => {
     const type = e.target.value;
     switch (type) {
       case "Relevance":
@@ -69,7 +81,7 @@ export default function ProductList() {
         });
         break;
       case "Name: A-Z":
-        setProductList(preArrayItem => {
+        setProductList((preArrayItem) => {
           const arrayItem = [...preArrayItem];
           arrayItem.sort((a, b) =>
             a.product_name.localeCompare(b.product_name)
@@ -78,7 +90,7 @@ export default function ProductList() {
         });
         break;
       case "Name: Z-A":
-        setProductList(preArrayItem => {
+        setProductList((preArrayItem) => {
           const arrayItem = [...preArrayItem];
           arrayItem.sort((a, b) =>
             b.product_name.localeCompare(a.product_name)
@@ -87,14 +99,14 @@ export default function ProductList() {
         });
         break;
       case "Price: Low to High":
-        setProductList(preArrayItem => {
+        setProductList((preArrayItem) => {
           const arrayItem = [...preArrayItem];
           arrayItem.sort((a, b) => a.price - b.price);
           return arrayItem;
         });
         break;
       case "Price: High to Low":
-        setProductList(preArrayItem => {
+        setProductList((preArrayItem) => {
           const arrayItem = [...preArrayItem];
           arrayItem.sort((a, b) => b.price - a.price);
           return arrayItem;
@@ -105,12 +117,10 @@ export default function ProductList() {
     }
   };
 
-  const handleProductPerPage = e => {
+  const handleProductPerPage = (e) => {
     setItemPerPage(e.target.value);
     scrollTop();
   };
-
-  
 
   return (
     <div className="grid wide">
@@ -122,7 +132,8 @@ export default function ProductList() {
         <select
           id="select-sort-product"
           name="sort-product"
-          onChange={handleChangeSort}>
+          onChange={handleChangeSort}
+        >
           {OptionSortProduct.map((value, index) => (
             <option className="option-sort-product" key={index}>
               {value}
@@ -188,9 +199,10 @@ export default function ProductList() {
             onClick={() => {
               if (currentPage > 1) {
                 scrollTop();
-                setCurrentPage(preCurrentPage => preCurrentPage - 1);
+                setCurrentPage((preCurrentPage) => preCurrentPage - 1);
               }
-            }}>
+            }}
+          >
             <i className="page-link fa-solid fa-angle-left"></i>
           </li>
           {(function () {
@@ -209,7 +221,8 @@ export default function ProductList() {
                   onClick={() => {
                     setCurrentPage(i);
                     scrollTop();
-                  }}>
+                  }}
+                >
                   <span className="page-link">{i}</span>
                 </li>
               );
@@ -227,9 +240,10 @@ export default function ProductList() {
             onClick={() => {
               if (currentPage < numberPages) {
                 scrollTop();
-                setCurrentPage(preCurrentPage => preCurrentPage + 1);
+                setCurrentPage((preCurrentPage) => preCurrentPage + 1);
               }
-            }}>
+            }}
+          >
             <i className="page-link fa-solid fa-angle-right"></i>
           </li>
         </ul>
@@ -240,7 +254,8 @@ export default function ProductList() {
           <select
             name="item-per-page"
             id="item-per-page"
-            onChange={handleProductPerPage}>
+            onChange={handleProductPerPage}
+          >
             <option>12</option>
             <option>24</option>
             <option>36</option>
