@@ -27,7 +27,7 @@ export default function ProductList() {
 
   const dispatch = useDispatch();
   const searchTxt = useSelector(state => state.SearchProducts).searchText;
-  console.log(searchTxt)
+  // console.log(searchTxt)
   const [productList, setProductList] = useState([]);
   const [itemPerPage, setItemPerPage] = useState(12);
   const [currentPage, setCurrentPage] = useState(1);
@@ -36,12 +36,12 @@ export default function ProductList() {
   useEffect(() => {
     try {
       getProductList().then(data => {
-        console.log(data)
+        // console.log(data)
         setProductList(data);
         if (searchTxt !== "") {
           var data2 = productList.filter(e =>
             e.product_name.toLowerCase().includes(searchTxt.toLowerCase()));
-          console.log(data2)
+          // console.log(data2)
           setProductList(data2);
         }
         productListFirst = data;
