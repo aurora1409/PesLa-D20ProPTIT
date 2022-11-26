@@ -6,14 +6,18 @@ import MenuCart from "../Cart";
 import "./index.scss";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import { setSearchText } from "../../Store/Search/SearchProduct";
+import { useRef } from "react";
 
 const Header = () => {
   const user = useSelector((state) => state.user);
   const productList = useSelector((state) => state.productadded).productList;
   const [hideCart, setHideCart] = useState(true);
   const [token, setToken] = useState();
+  const [keyword, setKeyWord] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const ref= useRef(null)
   
   // localStorage.setItem("token", "tokenn")
   // localStorage.removeItem("token");
@@ -118,8 +122,17 @@ const Header = () => {
                   className="header__search__input"
                   placeholder="Everything here is better than your ex"
                   type="text"
+                  ref={ref}
+                  onChange={(e) => {
+                    setKeyWord(e.target.value);
+                  }}
                 />
-                <div className="header__search__icon">
+                <div className="header__search__icon" onClick={e => {
+                  e.preventDefault();
+                  dispatch(setSearchText(keyword))
+                  ref.current.value='';
+                  setKeyWord("")
+                }}>
                   <i className="header__search__icon fa-solid fa-magnifying-glass"></i>
                 </div>
               </div>

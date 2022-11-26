@@ -42,7 +42,7 @@ const Account = () => {
   // console.log("hi account");
   // console.log(localStorage.getItem("token"))
 
-  if (localStorage.getItem("token") == undefined )
+  if (localStorage.getItem("token") == undefined || user.userRegister.length==0)
     return (
       <>
         <Headers />

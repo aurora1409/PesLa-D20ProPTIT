@@ -12,6 +12,7 @@ import { useRef } from "react";
 
 function CustomerInfo() {
   const productList = useSelector((state) => state.productadded).productList;
+  console.log(productList)
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const ref = useRef(null)

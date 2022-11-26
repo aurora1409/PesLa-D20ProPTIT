@@ -9,8 +9,9 @@ import "./sortProductList.scss";
 import "./renderProductList.scss";
 import "./pageProductList.css";
 import "../../../../grid.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../../../../Store/ProductAdded";
+// import { setSearchText } from "../../../../Store/Search";
 
 export default function ProductList() {
   const notify = () =>
@@ -25,6 +26,8 @@ export default function ProductList() {
     });
 
   const dispatch = useDispatch();
+  const searchTxt = useSelector(state => state.SearchProducts).searchText;
+  console.log(searchTxt)
   const [productList, setProductList] = useState([]);
   const [itemPerPage, setItemPerPage] = useState(12);
   const [currentPage, setCurrentPage] = useState(1);
@@ -33,14 +36,22 @@ export default function ProductList() {
   useEffect(() => {
     try {
       getProductList().then(data => {
+        console.log(data)
         setProductList(data);
+        if (searchTxt !== "") {
+          var data2 = productList.filter(e =>
+            e.product_name.toLowerCase().includes(searchTxt.toLowerCase()));
+          console.log(data2)
+          setProductList(data2);
+        }
         productListFirst = data;
       });
     } catch (err) {
       console.log(err);
     }
     scrollTop();
-  }, []);
+  }, [searchTxt]);
+  // console.log(productList)
 
   const handleAddItem = e => {
     notify();
@@ -98,6 +109,8 @@ export default function ProductList() {
     setItemPerPage(e.target.value);
     scrollTop();
   };
+
+  
 
   return (
     <div className="grid wide">
