@@ -21,4 +21,5 @@ const getProductItem = id => {
   return getAPI("/product/" + id);
 };
 
+
 export { getProductList, getProductItem };

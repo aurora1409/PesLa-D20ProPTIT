@@ -41,7 +41,7 @@ function Order() {
       <div className="wrap">
         <div className="grid wide wrapMin">
           <div className="row">
-            <div className="col l-2">
+            <div className="col l-2 m-2">
               <div className="dashboard">
                 <div className="dbTitle">DASHBOARD</div>
                 <div className="dbWrap">
@@ -68,19 +68,19 @@ function Order() {
                 </div>
               </div>
             </div>
-            <div className="col l-10 bigWrap">
+            <div className="col l-10 m-10 bigWrap">
               <div className="proTitleWrap row">
-                <div className="proTitle col l-12">
+                <div className="proTitle col l-12 m-12">
                   <i className="fa-solid fa-bag-shopping iconItem1"></i>
                   <span className="itemTileMain">My Orders</span>
                 </div>
               </div>
               <div className="row orderListTitle">
-                <div className="orderItemTitleTT col l-2">#</div>
-                <div className="orderItemTitleOrder col l-2">Order</div>
-                <div className="orderItemTitleStatus col l-2">Status</div>
-                <div className="orderItemTitleTime col l-4">Time Placed</div>
-                <div className="orderItemTitlePrice col l-2">Total Price</div>
+                <div className="orderItemTitleTT col l-2 m-2">#</div>
+                <div className="orderItemTitleOrder col l-2 m-2">Order</div>
+                <div className="orderItemTitleStatus col l-2 m-2">Status</div>
+                <div className="orderItemTitleTime col l-4 m-2">Time Placed</div>
+                <div className="orderItemTitlePrice col l-2 m-2">Total Price</div>
               </div>
               <div className="orderList">
                 {orders.map((e) => {
@@ -89,18 +89,23 @@ function Order() {
                     orders.indexOf(e) >= itemPerPage * (currentPage - 1)
                   )
                     return (
-                      <div className="row orderItem">
-                        <div className="orderItemTT col l-2">
-                          {orders.indexOf(e) + 1}
-                        </div>
-                        <div className="orderItemOrder col l-2">{e.id}</div>
-                        <div className="orderItemStatus col l-2">pending</div>
-                        <div className="orderItemTime col l-4">
-                          {e.created_at}
-                        </div>
-                        <div className="orderItemPrice col l-2">
-                          {parseInt(e.total_price).toLocaleString('vi', {style : 'currency', currency : 'VND'})}
-                        </div>
+                      <div className="orderItem">
+                        <Link className="item__order" to={`/orders/${e.id}`} style={{textDecoration:"none", color:"black"}}>
+                          <div className="row">
+                            <div className="orderItemTT col l-2  m-2">
+                              {orders.indexOf(e) + 1}
+                            </div>
+                            <div className="orderItemOrder col l-2 m-2">{e.id}</div>
+                            <div className="orderItemStatus col l-2 m-2">pending</div>
+                            <div className="orderItemTime col l-4 m-4">
+                              {e.created_at}
+                            </div>
+                            <div className="orderItemPrice col l-2 m-2">
+                              {parseInt(e.total_price).toLocaleString('vi', {style : 'currency', currency : 'VND'})}
+                            </div>
+
+                          </div>
+                        </Link>
                       </div>
                     );
                   else {
