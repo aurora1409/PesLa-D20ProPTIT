@@ -42,6 +42,7 @@
   }
   &__btn {
     display: flex;
+    cursor: pointer;
     &-language,
     &-theme,
     &-auth {

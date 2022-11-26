@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import { baseURL } from "../../Config";
 import {
   decreaseProduct,
@@ -12,6 +13,7 @@ import "./index.scss";
 function MenuCart({ hideCart, setHideCart }) {
   const productList = useSelector(state => state.productadded).productList;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleClose = () => {
     setHideCart(true);
   };
@@ -108,10 +110,16 @@ function MenuCart({ hideCart, setHideCart }) {
             )}
           </div>
           <div className="menu-cart__footer">
-            <button type="button" className="menu-cart-btn btn-primary">
+            <button type="button"
+              className="menu-cart-btn btn-primary"
+              onClick={() => {
+                navigate("/customerInfo")
+              }}>
               Checkout ({totalProduct(productList).toLocaleString("vi")}đ)
             </button>
-            <button type="button" className="menu-cart-btn btn-view-cart">
+            <button type="button" className="menu-cart-btn btn-view-cart" onClick={() => {
+                navigate("/cart")
+              }}>
               View Cart
             </button>
           </div>

@@ -1,10 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initUser = {
-  isLogin: false,
-  isRegister: false,
-  isRegisterState: false,
-  isLoginState: false,
+  
   isReadOnly: true,
   userRegister: [],
   product: [],
@@ -25,19 +22,7 @@ const userSlice = createSlice({
       user.userRegister.push(actions.payload);
       // else return userFirst
     },
-    IsLogin: (user, actions) => {
-      user.isLogin = actions.payload;
-    },
-    IsRegister: (user, actions) => {
-      user.isRegister = actions.payload;
-    },
-    IsLoginState: (user, actions) => {
-      console.log("login state");
-      user.isLoginState = actions.payload;
-    },
-    IsRegisterState: (user, actions) => {
-      user.isRegisterState = actions.payload;
-    },
+   
     IsReadOnly: (user, actions) => {
       user.isReadOnly = actions.payload;
     },
@@ -73,10 +58,6 @@ const userSlice = createSlice({
 
 export const {
   addNewUser,
-  IsLogin,
-  IsRegister,
-  IsLoginState,
-  IsRegisterState,
   IsReadOnly,
   checkUser,
 } = userSlice.actions;

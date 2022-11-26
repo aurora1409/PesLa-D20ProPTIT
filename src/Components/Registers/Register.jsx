@@ -7,10 +7,6 @@ import axios from "axios";
 import { Form, Link } from "react-router-dom";
 import {
   addNewUser,
-  IsLogin,
-  IsRegister,
-  IsLoginState,
-  IsRegisterState,
 } from "../../Store/User/index";
 import { useState } from "react";
 import Headers from "../Header";
@@ -19,6 +15,7 @@ import { ToastContainer, toast } from "react-toastify";
 import Account from "../../Pages/Accounts/Account";
 import Login from "../Logins/Login";
 import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
 
 // export default khong can dau ngoac {}, ten gi cung duoc
 // export bthg can dau {}
@@ -27,6 +24,7 @@ const Register = () => {
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const ref = useRef(null);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -36,7 +34,9 @@ const Register = () => {
   //const [firstname, setFirstname] = useState('');
   const handleClickRegister = (e) => {
     // console.log(firstName)
-    if (!e.detail || e.detail == 1) {
+    e.preventDefault();
+    ref.current.disabled = true;
+    // if (!e.detail || e.detail == 1) {
       console.log("register");
       Axios("/register/", "POST", {
         username,
@@ -86,7 +86,7 @@ const Register = () => {
           // username == "" ? notify() : notify2();
           console.log(err);
         });
-    }
+    // }
   };
 
   // dung setState de cho dang nhap va dang ki thay phien an hien, tuc la neu true
@@ -108,8 +108,8 @@ const Register = () => {
                 className="btnClose"
                 aria-label="Close"
                 onClick={() => {
-                  dispatch(IsLoginState(false));
-                  navigate("/account");
+                  // dispatch(IsLoginState(false));
+                  navigate(-1);
                 }}></button>
             </div>
             <form className="wrap" onSubmit={e=> handleClickRegister(e)}>
@@ -175,6 +175,7 @@ const Register = () => {
                 className="registerBtn"
                 id="registerBtnMain"
                 type="submit"
+                ref={ref}
               >
                 Register
                 </button>

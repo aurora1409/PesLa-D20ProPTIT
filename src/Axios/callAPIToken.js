@@ -12,4 +12,6 @@ function AxiosToken(endpoint, method = "GET", token, body=[]) {
   });
 }
 
+
+
 export default AxiosToken;
