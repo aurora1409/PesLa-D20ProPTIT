@@ -30,6 +30,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  // const 
   // console.log(user);
   //const [firstname, setFirstname] = useState('');
   const handleClickRegister = (e) => {
@@ -46,6 +47,7 @@ const Register = () => {
         email,
       })
         .then(res => {
+          // ref.current.disabled = false
           const notify = () =>
             toast.success("Register success!!!", {
               position: "top-right",
@@ -70,6 +72,7 @@ const Register = () => {
           // console.log(user);
         })
         .catch(err => {
+          ref.current.disabled = false;
           const notify2 = () =>
             toast.warning(`username already exist!!!`, {
               position: "top-right",
