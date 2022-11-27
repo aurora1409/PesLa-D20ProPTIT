@@ -50,7 +50,7 @@ export default function ProductList() {
       } else {
         const searchProduct = [];
         for (let i = 0; i < productList.length; i++) {
-          if (productList[i].product_name.includes(searchText)) {
+          if (productList[i].product_name.toLowerCase().includes(searchText.toLowerCase())) {
             searchProduct.push(productList[i]);
           }
         }
