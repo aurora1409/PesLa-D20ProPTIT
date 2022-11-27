@@ -127,10 +127,7 @@ const Header = () => {
                 <div
                   className="header__search__icon"
                   onClick={e => {
-                    e.preventDefault();
                     dispatch(setSearchText(keyword));
-                    ref.current.value = "";
-                    setKeyWord("");
                   }}>
                   <i className="header__search__icon fa-solid fa-magnifying-glass"></i>
                 </div>

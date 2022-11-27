@@ -1,6 +1,5 @@
 import axios from "axios";
 import { baseURL } from "../../Config";
-import AxiosToken from "../callAPIToken";
 
 const getAPI = (path, headers) => {
   return axios
@@ -20,6 +19,5 @@ const getProductList = () => {
 const getProductItem = id => {
   return getAPI("/product/" + id);
 };
-
 
 export { getProductList, getProductItem };
