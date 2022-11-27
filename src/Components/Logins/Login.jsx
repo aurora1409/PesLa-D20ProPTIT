@@ -21,6 +21,7 @@ import { ToastContainer, toast } from "react-toastify";
 import Account from "../../Pages/Accounts/Account";
 import Register from "../Registers/Register";
 import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
 
 // export default khong can dau ngoac {}, ten gi cung duoc
 // export bthg can dau {}
@@ -29,6 +30,7 @@ const Login = () => {
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const ref= useRef(null)
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   // const notify = () => toast(`Login success!!! Welcome ${username}`);
@@ -36,9 +38,11 @@ const Login = () => {
   // console.log(user);
   //const [firstname, setFirstname] = useState('');
   const handleClickLogin = e => {
-    if (!e.detail || e.detail == 1) {
-      console.log("login");
-      console.log(dispatch(checkUser({ username, password })));
+    e.preventDefault();
+    ref.current.disabled = true;
+    // if (!e.detail || e.detail == 1) {
+      // console.log("login");
+      // console.log(dispatch(checkUser({ username, password })));
 
       Axios("/login/", "POST", {
         username,
@@ -58,7 +62,7 @@ const Login = () => {
               theme: "light",
             });
           notify();
-          dispatch(IsLoginState(true));
+          // dispatch(IsLoginState(true));
 
           localStorage.setItem("token", res.data.token);
 
@@ -68,7 +72,7 @@ const Login = () => {
               // console.log(2);
               console.log(res.data);
               dispatch(addNewUser(res.data));
-              navigate("/account");
+              navigate(-1);
             })
             .catch(err => {
               // console.log("sai")
@@ -76,18 +80,7 @@ const Login = () => {
             });
         })
         .catch(err => {
-          const notify = () =>
-            toast.warning(`You must fill all fields!`, {
-              position: "top-right",
-              autoClose: 2000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-            });
-          const notify2 = () => {
+          const notify = () => {
             toast.warning(`Account does not exist!!!`, {
               position: "top-right",
               autoClose: 2000,
@@ -109,25 +102,21 @@ const Login = () => {
               theme: "light",
             });
           };
-          username == "" ? notify() : notify2();
-          // console.log("sai");
+          notify()
           console.log(err);
         });
-    }
+    // }
   };
   // dispatch(IsLoginState(false));
 
   var handleClickClose = () => {
-    navigate("/account");
-  };
-  // useEffect (handleClickClose, [user.isLoginState])
+    // dispatch(IsLoginState(false));
+    // navigate("/account");
+    navigate(-1);
 
-  var account = (
-    <div className="regis">
-      <Headers />
-      <Footer />
-    </div>
-  );
+  };
+ 
+
 
   var account2 = (
     <div className="regis">
@@ -144,8 +133,8 @@ const Login = () => {
               // aria-label="Close"
               onClick={handleClickClose}></button>
           </div>
-          <div className="wrap">
-            <form className="registerMain">
+          <form className="wrap" onSubmit={e=>handleClickLogin(e)}>
+            <div className="registerMain">
               <input
                 type="text"
                 className="inputRegister"
@@ -166,11 +155,10 @@ const Login = () => {
                 placeholder="Password"
                 onChange={e => {
                   setPassword(e.target.value);
-                  //console.log(firstName)
                 }}
                 required
               />
-            </form>
+            </div>
             <div className="checkSaveLogin">
               <input type="checkbox" className="check" name="checkSave" />
               <label htmlFor="checkSave">Remember Password</label>
@@ -178,21 +166,18 @@ const Login = () => {
             <button
               className="registerBtn"
               id="loginBtnMain"
-              onClick={e => handleClickLogin(e)}>
-              {/* <Link to="/account">Login</Link> */}
+              type="submit"
+              ref={ref}
+              // onClick={e => handleClickLogin(e)}
+            >
               Login
-              {/* {navigate("/register")} */}
             </button>
             <div className="separateWrap">
               <div className="sideSeparate"></div>
               <div className="mainSeparate">OR</div>
               <div className="sideSeparate"></div>
             </div>
-            {/* (event) => {
-                axios(/re, {
-                  firstname,
-                  ///.
-                }) */}
+           
             <div className="otherMethodRegister">
               <button className="registerBtn" id="registerGGBtn">
                 Login with Google
@@ -223,7 +208,7 @@ const Login = () => {
               Forgot password
               {/* <a href="">Already have an account? Login</a> */}
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>

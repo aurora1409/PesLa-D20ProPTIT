@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import { baseURL } from "../../Config";
 import {
   decreaseProduct,
@@ -8,9 +9,11 @@ import {
 } from "../../Store/ProductAdded";
 import { getIdItem, totalProduct } from "../../Utils";
 import "./index.scss";
-export default function MenuCart({ hideCart, setHideCart }) {
+
+function MenuCart({ hideCart, setHideCart }) {
   const productList = useSelector(state => state.productadded).productList;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleClose = () => {
     setHideCart(true);
   };
@@ -42,7 +45,7 @@ export default function MenuCart({ hideCart, setHideCart }) {
         <div className="menu-cart">
           <div className="menu-cart__header">
             <div className="menu-cart__header-title">
-              Cart: {handleClose} Items
+              Cart: {productList.length} Items
             </div>
             <div className="menu-cart__header-close" onClick={handleClose}>
               <i className="fa-solid fa-xmark btnclose"></i>
@@ -107,10 +110,16 @@ export default function MenuCart({ hideCart, setHideCart }) {
             )}
           </div>
           <div className="menu-cart__footer">
-            <button type="button" className="menu-cart-btn btn-primary">
+            <button type="button"
+              className="menu-cart-btn btn-primary"
+              onClick={() => {
+                navigate("/customerInfo")
+              }}>
               Checkout ({totalProduct(productList).toLocaleString("vi")}đ)
             </button>
-            <button type="button" className="menu-cart-btn btn-view-cart">
+            <button type="button" className="menu-cart-btn btn-view-cart" onClick={() => {
+                navigate("/cart")
+              }}>
               View Cart
             </button>
           </div>
@@ -119,3 +128,7 @@ export default function MenuCart({ hideCart, setHideCart }) {
     </>
   );
 }
+
+//export { handleDecrease, handleIncrease, handleRemoveItem }
+
+export default MenuCart

@@ -6,6 +6,9 @@ import Contact from "../Pages/Contact";
 import HomePage from "../Pages/HomePage";
 import Item from "../Pages/Item";
 import Shop from "../Pages/Shop";
+import CustomerInfo from "../Pages/CustomerInfos/CustomerInfo";
+import Order from "../Pages/Orders/Order";
+import OrderItem from "../Pages/OrderItems/OrderItem";
 
 const listRoute = [
   {
@@ -39,6 +42,18 @@ const listRoute = [
   {
     path: "product-:id",
     component: <Item />,
+  },
+  {
+    path: "customerInfo",
+    component: <CustomerInfo />,
+  },
+  {
+    path: "order",
+    component: <Order/>,
+  },
+  {
+    path: "orders/:id",
+    component: <OrderItem/>,
   },
 ];
 

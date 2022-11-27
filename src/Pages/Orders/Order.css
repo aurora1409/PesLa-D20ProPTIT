@@ -1,0 +1,28 @@
+.orderListTitle {
+    margin: 1.7rem -12px;
+    padding: 0.7rem 0;
+    border-bottom: rgb(155, 150, 150) solid 1px;
+    border-top: rgb(155, 150, 150) solid 1px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: rgb(110, 106, 106);
+    text-align: center;
+}
+
+.orderItem{
+    padding: 1rem 0;
+    /* color: rgb(52, 54, 53) !important; */
+    /* margin-bottom: 1rem; */
+    border-bottom: rgb(223, 223, 223) solid 1px;
+}
+
+.orderItemStatus {
+    border-radius: 50rem;
+    /* padding: 0.3rem 0; */
+    /* background-color: rgb(65, 65, 236); */
+    color: rgb(50, 40, 192) !important;
+    font-weight: 600;
+    /* width: 50%; */
+    /* display: flex; */
+    text-align: center;
+}
