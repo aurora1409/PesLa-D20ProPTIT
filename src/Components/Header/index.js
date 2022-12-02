@@ -10,49 +10,47 @@ import { setSearchText } from "../../Store/Search/SearchProduct";
 import { useRef } from "react";
 
 const Header = () => {
-  const user = useSelector((state) => state.user);
-  const productList = useSelector((state) => state.productadded).productList;
+  const user = useSelector(state => state.user);
+  const productList = useSelector(state => state.productadded).productList;
   const [hideCart, setHideCart] = useState(true);
   const [token, setToken] = useState();
   const [keyword, setKeyWord] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const ref= useRef(null)
-  
+  const ref = useRef(null);
+
   // localStorage.setItem("token", "tokenn")
   // localStorage.removeItem("token");
   // var token2 = localStorage.getItem("token");
   // console.log(token);
- 
 
   const handleClickMenuCart = () => {
     setHideCart(false);
   };
 
-
   const handleLogout = () => {
-      localStorage.removeItem("token");
-      const notify = () =>
-        toast.success(`Logout success!!!`, {
-          position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-        notify();
-        navigate("/");  
-  }
-  
+    localStorage.removeItem("token");
+    const notify = () =>
+      toast.success(`Logout success!!!`, {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    notify();
+    navigate("/");
+  };
+
   const handleClickLogout = () => {
     localStorage.getItem("token") != undefined
-      ? handleLogout() 
-      : navigate("/login") 
-  }
-  
+      ? handleLogout()
+      : navigate("/login");
+  };
+
   return (
     <React.Fragment>
       <MenuCart hideCart={hideCart} setHideCart={setHideCart} />
@@ -90,8 +88,7 @@ const Header = () => {
                 </div>
                 <div
                   className="header__higher__btn-auth"
-                  onClick={handleClickLogout}
-                >
+                  onClick={handleClickLogout}>
                   {localStorage.getItem("token") != undefined ? (
                     <i className="fa-solid fa-arrow-right-from-bracket"></i>
                   ) : (
@@ -123,16 +120,18 @@ const Header = () => {
                   placeholder="Everything here is better than your ex"
                   type="text"
                   ref={ref}
-                  onChange={(e) => {
+                  onChange={e => {
                     setKeyWord(e.target.value);
                   }}
                 />
-                <div className="header__search__icon" onClick={e => {
-                  e.preventDefault();
-                  dispatch(setSearchText(keyword))
-                  ref.current.value='';
-                  setKeyWord("")
-                }}>
+                <div
+                  className="header__search__icon"
+                  onClick={e => {
+                    dispatch(setSearchText(keyword));
+                    ref.current.value = ""
+                    setKeyWord("")
+                    // dispatch(setSearchText(""));
+                  }}>
                   <i className="header__search__icon fa-solid fa-magnifying-glass"></i>
                 </div>
               </div>
