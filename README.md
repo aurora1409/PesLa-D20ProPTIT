@@ -1,4 +1,4 @@
-# PesLa-D2-ProPTIT
+# PesLa-D20ProPTIT
 
 #### *This is a project about develop front-end web*
 #### *Member*
